@@ -5,7 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="KiriminAja\" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" packagePrefix="KiriminAja\" />
-      <sourceFolder url="file://$MODULE_DIR$/tests/Xendit" isTestSource="true" packagePrefix="KiriminAja\" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/KiriminAja" isTestSource="true" packagePrefix="KiriminAja\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/http-factory" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ralouphie/getallheaders" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/http-client" />
