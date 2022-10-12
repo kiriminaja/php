@@ -1,0 +1,42 @@
+<?php
+
+namespace KiriminAja\Services\Shipping;
+
+use KiriminAja\Base\ServiceBase;
+use KiriminAja\Models\RequestPickupData;
+use KiriminAja\Repositories\ShippingRepository;
+use KiriminAja\Responses\ServiceResponse;
+
+class RequestPickupService extends ServiceBase {
+
+    private $data;
+    private $shippingRepo;
+
+    /**
+     * @param $data
+     */
+    public function __construct(RequestPickupData $data) {
+        $this->data         = $data;
+        $this->shippingRepo = new ShippingRepository;
+    }
+
+
+    public function call(): ServiceResponse {
+        try {
+            [$status, $data] = $this->shippingRepo->requestPickup($this->data);
+            if ($status && $data['status']) {
+                return self::success([
+                    'pickup_number'  => $data['pickup_number'],
+                    'payment_status' => $data['payment_status'],
+                    'details'        => $data['details'],
+                ], "loaded");
+            }
+            if (isset($data['status']) && !$data['status']) {
+                return self::error(null, $data['text']);
+            }
+            return self::error(null, json_encode($data));
+        } catch (\Throwable $th) {
+            return self::error(null, $th->getMessage());
+        }
+    }
+}
