@@ -31,7 +31,7 @@
     "psr-4": {
       "KiriminAja\\": [
         "tests/",
-        "tests/Xendit/"
+        "tests/KiriminAja/"
       ]
     }
   },
