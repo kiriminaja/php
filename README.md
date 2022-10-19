@@ -4,7 +4,8 @@ This library is the abstraction of KiriminAja API for access from applications w
 
 ## Documentation
 
-For the API documentation, check [KiriminAja API Documentation](https://developer.kiriminaja.com).
+For the API documentation, check [KiriminAja API Documentation](https://developer.kiriminaja.com). Contact us by sending an email to
+- [tech@kiriminaja.com](mailto:tech@kiriminaja.com)
 
 ## Installation
 
