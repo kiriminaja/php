@@ -21,6 +21,23 @@ Configure package with your account's secret key obtained from KiriminAja Docume
 KiriminAja::setApiKey('YOUR_KEY');
 ```
 
+## Available Services
+```php
+KiriminAja::getCity((int) $province_id);
+KiriminAja::getDistrict((int) $district_id);
+KiriminAja::getDistrictByName((string) $keyword);
+KiriminAja::getProvince();
+KiriminAja::setWhiteListExpedition((array) $services);
+KiriminAja::setCallback((string) $url);
+KiriminAja::getPrice(ShippingPriceData $data);
+KiriminAja::getSchedules();
+KiriminAja::requestPickup(RequestPickupData $data);
+KiriminAja::getPayment((string) $payment_id);
+KiriminAja::cancelShipment((string) $waybill,(string)  $reason);
+KiriminAja::getTracking((string) $package_id);
+KiriminAja::getSchedules();
+```
+
 ## Contributing
 
 For any requests, bugs, or comments, please open an [issue](https://github.com/kiriminaja/kiriminaja-php/issues) or [submit a pull request](https://github.com/kiriminaja/kiriminaja-php/pulls).
