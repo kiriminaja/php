@@ -19,7 +19,7 @@ or add it manually in your composer.json file.
 ## Usage
 Configure package with your account's secret key obtained from KiriminAja Document Assignment.
 ```php
-KiriminAja::setApiKey('YOUR_KEY');
+KiriminAjaConfig::setApiTokenKey('YOUR_KEY');
 ```
 
 ## Available Services
