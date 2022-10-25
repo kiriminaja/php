@@ -21,6 +21,7 @@ class GetPaymentService extends ServiceBase {
 
 
     public function call(): ServiceResponse {
+        if (!is_int($this->paymentID)) return self::error(null, "Parameter must be numeric");
         try {
             [$status, $data] = $this->shippingRepo->payment($this->paymentID);
             if ($status && $data['status']) {
