@@ -19,11 +19,7 @@ class Cache {
      * @return mixed|null
      */
     public static function getCache($key) {
-        if (isset($_SESSION[self::$prefixCache.$key])) {
-            return $_SESSION[self::$prefixCache.$key];
-        } else {
-            return null;
-        }
+        return $_SESSION[self::$prefixCache . $key] ?? null;
     }
 
     /**

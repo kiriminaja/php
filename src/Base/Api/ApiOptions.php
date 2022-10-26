@@ -2,6 +2,7 @@
 
 namespace KiriminAja\Base\Api;
 
+use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use KiriminAja\Base\Config\Cache\Mode;
@@ -15,7 +16,7 @@ trait ApiOptions {
      * Getter base url
      *
      * @return string
-     * @throws \Exception
+     * @throws Exception
      */
     private static function baseURL(): string {
         switch (KiriminAjaConfig::mode()->getMode()) {
@@ -24,7 +25,7 @@ trait ApiOptions {
             case Mode::Production :
                 return "https://kiriminaja.com/";
             default :
-                throw new \Exception("unkown mode");
+                throw new Exception("unkown mode");
         }
     }
 
@@ -68,7 +69,7 @@ trait ApiOptions {
      *
      * @param $endpoint
      * @return string
-     * @throws \Exception
+     * @throws Exception
      */
     protected static function url($endpoint): string {
         return self::baseURL().$endpoint;
