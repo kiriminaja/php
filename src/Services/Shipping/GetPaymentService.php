@@ -21,6 +21,7 @@ class GetPaymentService extends ServiceBase {
 
 
     public function call(): ServiceResponse {
+        if (!$this->paymentID) return self::error(null, "Parameter can not be null");
         try {
             [$status, $data] = $this->shippingRepo->payment($this->paymentID);
             if ($status && $data['status']) {

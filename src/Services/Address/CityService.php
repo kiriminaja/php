@@ -7,24 +7,29 @@ use KiriminAja\Repositories\AddressRepository;
 use KiriminAja\Responses\ServiceResponse;
 use KiriminAja\Utils\Validator;
 
-class CityService extends ServiceBase {
+class CityService extends ServiceBase
+{
     private $addressRepository;
     private $provinceID;
 
     /**
      * @param $provinceID
      */
-    public function __construct($provinceID) {
+    public function __construct($provinceID)
+    {
         $this->addressRepository = new AddressRepository;
-        $this->provinceID        = $provinceID;
+        $this->provinceID = $provinceID;
     }
 
     /**
      * @return \Rakit\Validation\Validation
      */
-    private function validation(): \Rakit\Validation\Validation {
-        return Validator::make(['province_id' => $this->provinceID], [
-            'province_id' => 'required|integer'
+    private function validation(): \Rakit\Validation\Validation
+    {
+        return Validator::validate([
+            'province_id' => $this->provinceID
+        ], [
+            'province_id' => 'required|numeric'
         ]);
     }
 
@@ -33,8 +38,10 @@ class CityService extends ServiceBase {
      *
      * @return ServiceResponse
      */
-    public function call(): ServiceResponse {
-        if ($this->validation()->fails()) return self::error(null, $this->validation()->errors()->first());
+    public function call(): ServiceResponse
+    {
+        if ($this->validation()->fails()) return self::error(null, $this->validation()->errors()->all()[0]);
+
         try {
             [$status, $data] = $this->addressRepository->cities($this->provinceID);
             if ($status) {
@@ -45,7 +52,7 @@ class CityService extends ServiceBase {
             }
             return self::error(null, json_encode($data));
         } catch (\Throwable $th) {
-            return self::error(null, $th->getMessage());
+            return self::error(null, $th->getMessage().' line '.$th->getLine());
         }
     }
 }
