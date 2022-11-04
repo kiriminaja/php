@@ -21,6 +21,15 @@ class TrackingService extends ServiceBase {
 
 
     public function call(): ServiceResponse {
+
+        if (is_null($this->orderID)){
+            return self::error(null, "Params order_id Can't be blank");
+        }
+
+        if (is_numeric($this->orderID)){
+            return self::error(null, "Params order_id must be an string");
+        }
+
         try {
             [$status, $data] = $this->shippingRepo->tracking($this->orderID);
             if ($status && $data['status']) {

@@ -22,6 +22,15 @@ class CancelShippingService extends ServiceBase {
 
 
     public function call(): ServiceResponse {
+
+        if (is_null($this->awb && $this->reason)){
+            return self::error(null, "Params Can't be blank");
+        }
+
+        if (is_numeric($this->awb && $this->reason)){
+            return self::error(null, "Params must be an string");
+        }
+
         try {
             [$status, $data] = $this->shippingRepo->cancel($this->awb, $this->reason);
             if ($status && $data['status']) {

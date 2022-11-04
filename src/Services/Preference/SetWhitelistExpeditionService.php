@@ -21,7 +21,13 @@ class SetWhitelistExpeditionService extends ServiceBase {
 
 
     public function call(): ServiceResponse {
-        if (!is_array($this->services)) return self::error(null, 'parameter must be array');
+
+        if (!is_array($this->services)) return self::error(null, 'Parameter must be array');
+
+        if(count(array_filter($this->services)) != count($this->services)) {
+            return self::error(null, "Array of value Can't be empty");
+        }
+
         try {
             [$status, $data] = $this->preferenceRepo->setWhiteListExpedition($this->services);
             if ($status && $data['status']) {
