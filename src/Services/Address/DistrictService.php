@@ -19,6 +19,11 @@ class DistrictService extends ServiceBase {
     }
 
     public function call(): ServiceResponse {
+
+        if (is_string($this->cityID)) {
+            return self::error(null, 'Params city_id must be in integer');
+        }
+
         try {
             [$status, $data] = $this->addressRepository->districts($this->cityID);
             if ($status && $data['status']) {

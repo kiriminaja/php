@@ -2,6 +2,8 @@
 
 namespace KiriminAja\Unit\Preference\SetWhitelistExpeditionService;
 
+require_once(__DIR__.'/../PreferenceMock.php');
+
 use KiriminAja\Services\Preference\SetWhitelistExpeditionService;
 use KiriminAja\Unit\Preference\PreferenceMock;
 use PHPUnit\Framework\TestCase;
@@ -17,7 +19,7 @@ class SetWhitelistExpeditionServiceSuccessTest extends TestCase
                     true,
                     [
                         'status' => true,
-                        'text'   => "Success get preference data",
+                        'text'   => "Success to set whitelist",
                         'datas'  => [
                             'id'   => 123,
                             'name' => 'Mock preference data'
@@ -31,6 +33,9 @@ class SetWhitelistExpeditionServiceSuccessTest extends TestCase
     {
         $services = ['jne','sicepat','jnt'];
         $result = (new SetWhitelistExpeditionService($services))->call();
+
         self::assertTrue($result->status);
+        self::assertEquals('Success to set whitelist', $result->message);
+        self::assertEquals(null, $result->data);
     }
 }

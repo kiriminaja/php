@@ -20,8 +20,12 @@ class RequestPickupService extends ServiceBase {
         $this->shippingRepo = new ShippingRepository;
     }
 
-
     public function call(): ServiceResponse {
+
+        if (is_null($this->data->address) || is_null($this->data->phone) || is_null($this->data->name) || is_null($this->data->kecamatan_id) || is_null($this->data->schedule) || $this->data->packages == []){
+            return self::error(null, "Required params can't be blank");
+        }
+
         try {
             [$status, $data] = $this->shippingRepo->requestPickup($this->data);
             if ($status && $data['status']) {
