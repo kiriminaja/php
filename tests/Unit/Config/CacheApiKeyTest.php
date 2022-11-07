@@ -10,7 +10,7 @@ class CacheApiKeyTest extends TestCase {
     public function testCacheApiKey() {
         $cache = new _CacheApiKey;
         $cache->setKey("2323");
-        echo "\nAPI-Key : ".$cache->getKey();
+//        echo "\nAPI-Key : ".$cache->getKey();
         self::assertTrue(is_string($cache->getKey()));
     }
 

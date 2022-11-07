@@ -40,7 +40,12 @@ class CityService extends ServiceBase
      */
     public function call(): ServiceResponse
     {
+        // This validation doesn't work
         if ($this->validation()->fails()) return self::error(null, $this->validation()->errors()->all()[0]);
+
+        if (is_string($this->provinceID)) {
+            return self::error(null, 'Params province_id must be in integer');
+        }
 
         try {
             [$status, $data] = $this->addressRepository->cities($this->provinceID);
