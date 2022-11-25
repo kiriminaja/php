@@ -10,7 +10,6 @@ class PreferenceRepository implements PreferenceContract {
     use ApiBase;
 
     public function setWhiteListExpedition($services): array {
-        if (!is_array($services)) throw new \Exception('service is not array');
         return self::api()->post('api/mitra/v3/set_whitelist_services', ['services' => $services]);
     }
 

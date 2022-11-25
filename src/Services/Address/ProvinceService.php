@@ -6,18 +6,21 @@ use KiriminAja\Base\ServiceBase;
 use KiriminAja\Repositories\AddressRepository;
 use KiriminAja\Responses\ServiceResponse;
 
-class ProvinceService extends ServiceBase {
+class ProvinceService extends ServiceBase
+{
 
     private $addressRepository;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->addressRepository = new AddressRepository;
     }
 
     /**
      * @return ServiceResponse
      */
-    public function call(): ServiceResponse {
+    public function call(): ServiceResponse
+    {
         try {
             [$status, $data] = $this->addressRepository->provinces();
             if ($status && $data['status']) {

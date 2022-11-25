@@ -12,7 +12,7 @@ class ScheduleServiceTest extends TestCase {
 
         $schedules = KiriminAja::getSchedules();
 
-        echo "\nresults : ".json_encode($schedules);
+//        echo "\nresults : ".json_encode($schedules);
 
         self::assertTrue(true);
     }

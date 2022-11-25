@@ -22,6 +22,15 @@ class PriceService extends ServiceBase {
 
 
     public function call(): ServiceResponse {
+
+        if ($this->data->origin == null || $this->data->destination == null || $this->data->weight == null) {
+            return self::error(null, "Params origin, destination, weight Can't be blank");
+        }
+
+        if (is_string($this->data->origin) || is_string($this->data->destination) || is_string($this->data->weight)){
+            return self::error(null, "Params origin, destination, weight must be an integers");
+        }
+
         try {
             [$status, $data] = $this->shippingRepo->price($this->data);
             if ($status && $data['status']) {

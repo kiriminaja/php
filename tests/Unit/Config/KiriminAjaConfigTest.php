@@ -15,7 +15,7 @@ class KiriminAjaConfigTest extends TestCase {
         KiriminAjaConfig::setMode(Mode::Staging)->setApiTokenKey($expectedKey);
 
         $key = KiriminAjaConfig::apiKey()->getKey();
-        echo "\nAPI key : ".$key;
+//        echo "\nAPI key : ".$key;
 
         self::assertTrue($key == $expectedKey);
     }

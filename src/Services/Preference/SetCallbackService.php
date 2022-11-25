@@ -20,6 +20,15 @@ class SetCallbackService extends ServiceBase {
     }
 
     public function call(): ServiceResponse {
+
+        if(is_null($this->url)){
+            return self::error(null, "Url Params Can't be Blank");
+        }
+
+        if(is_numeric($this->url)){
+            return self::error(null, "Url params must be an string");
+        }
+
         try {
             [$status, $data] = $this->preferenceRepo->setCallback($this->url);
             if ($status && $data['status']) {

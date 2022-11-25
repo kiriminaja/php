@@ -46,7 +46,7 @@ class RequestPickupServiceTest extends TestCase {
 
         $service = (new RequestPickupService($data))->call();
 
-        echo "\nresult : ".json_encode($service);
+//        echo "\nresult : ".json_encode($service);
 
         self::assertTrue(true);
     }
