@@ -6,6 +6,7 @@ use KiriminAja\Base\ServiceBase;
 use KiriminAja\Contracts\KiriminAjaContract;
 use KiriminAja\Contracts\ServiceContract;
 use KiriminAja\Models\RequestPickupData;
+use KiriminAja\Models\ShippingFullPriceData;
 use KiriminAja\Models\ShippingPriceData;
 use KiriminAja\Responses\ServiceResponse;
 use KiriminAja\Services\Address\CityService;
@@ -15,6 +16,7 @@ use KiriminAja\Services\Address\ProvinceService;
 use KiriminAja\Services\Preference\SetCallbackService;
 use KiriminAja\Services\Preference\SetWhitelistExpeditionService;
 use KiriminAja\Services\Shipping\CancelShippingService;
+use KiriminAja\Services\Shipping\FullShippingPrice;
 use KiriminAja\Services\Shipping\GetPaymentService;
 use KiriminAja\Services\Shipping\PriceService;
 use KiriminAja\Services\Shipping\RequestPickupService;
@@ -58,6 +60,10 @@ class KiriminAja implements KiriminAjaContract {
 
     public static function getPrice(ShippingPriceData $data): ServiceResponse {
         return self::call((new PriceService($data)));
+    }
+
+    public static function fullShippingPrice(ShippingFullPriceData $data): ServiceResponse {
+        return self::call((new FullShippingPrice($data)));
     }
 
     public static function getSchedules(): ServiceResponse {
