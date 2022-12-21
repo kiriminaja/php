@@ -3,6 +3,7 @@
 namespace KiriminAja\Contracts;
 
 use KiriminAja\Models\RequestPickupData;
+use KiriminAja\Models\ShippingFullPriceData;
 use KiriminAja\Models\ShippingPriceData;
 use KiriminAja\Responses\ServiceResponse;
 
@@ -21,6 +22,8 @@ interface KiriminAjaContract {
     public static function setCallback($url): ServiceResponse;
 
     public static function getPrice(ShippingPriceData $data): ServiceResponse;
+
+    public static function fullShippingPrice(ShippingFullPriceData $data): ServiceResponse;
 
     public static function getSchedules(): ServiceResponse;
 

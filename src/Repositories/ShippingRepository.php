@@ -16,6 +16,10 @@ class ShippingRepository implements ShippingContract {
         return self::api()->post('api/mitra/shipping_price', $data->toArray());
     }
 
+    public function fullShippingPrice(object $data): array {
+        return self::api()->post('api/mitra/v5/shipping_price', $data->toArray());
+    }
+
     public function schedules(): array {
         return self::api()->post('api/mitra/v2/schedules', null);
     }
