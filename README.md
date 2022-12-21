@@ -1,5 +1,11 @@
 # KiriminAja API Client Library
 
+<p align="center">
+<a href="https://packagist.org/packages/kiriminaja/kiriminaja-php"><img src="https://img.shields.io/packagist/dt/kiriminaja/kiriminaja-php" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/kiriminaja/kiriminaja-php"><img src="https://img.shields.io/packagist/v/kiriminaja/kiriminaja-php" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/kiriminaja/kiriminaja-php"><img src="https://img.shields.io/packagist/l/kiriminaja/kiriminaja-php" alt="License"></a>
+</p>
+
 This library is the abstraction of KiriminAja API for access from applications written with PHP.
 
 ## Documentation
