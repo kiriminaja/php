@@ -4,7 +4,9 @@
 </p>
 
 <h4 align="center">
-  <a href="https://developer.kiriminaja.com/docs">Quickstart</a>
+  <a href="https://developer.kiriminaja.com">Documentation</a>
+  <span> · </span>
+  <a href="mailto:tech@kiriminaja.com">Contact Us</a>
   <span> · </span>
   <a href="https://instagram.com/kiriminaja.it">Fun IG Account</a>
   <span> · </span>
@@ -17,11 +19,6 @@
 <a href="https://packagist.org/packages/kiriminaja/kiriminaja-php"><img src="https://img.shields.io/packagist/l/kiriminaja/kiriminaja-php" alt="License"></a>
 </p>
 
-
-## Documentation
-
-For the API documentation, check [KiriminAja API Documentation](https://developer.kiriminaja.com). Contact us by sending an email to
-- [tech@kiriminaja.com](mailto:tech@kiriminaja.com)
 
 ## Installation
 
