@@ -3,7 +3,6 @@
 </p>
 
 <h2 align="center">Develop. Connect. Shipped. Tenang Pakai #KiriminAja.</h2>
-
   <p align="center">This library is the abstraction of KiriminAja API for access from applications written with PHP.
 </p>
 
