@@ -1,4 +1,15 @@
-# KiriminAja API Client Library
+<h2 align="center">Develop. Connect. Shipped. Tenang Pakai #KiriminAja.</h2>
+
+  <p align="center">This library is the abstraction of KiriminAja API for access from applications written with PHP.
+</p>
+
+<h4 align="center">
+  <a href="https://developer.kiriminaja.com/docs">Quickstart</a>
+  <span> · </span>
+  <a href="https://instagram.com/kiriminaja.it">Fun IG Account</a>
+  <span> · </span>
+  <a href="https://developer.kiriminaja.com/blog">Blog</a>
+</h4>
 
 <p align="center">
 <a href="https://packagist.org/packages/kiriminaja/kiriminaja-php"><img src="https://img.shields.io/packagist/dt/kiriminaja/kiriminaja-php" alt="Total Downloads"></a>
@@ -6,7 +17,6 @@
 <a href="https://packagist.org/packages/kiriminaja/kiriminaja-php"><img src="https://img.shields.io/packagist/l/kiriminaja/kiriminaja-php" alt="License"></a>
 </p>
 
-This library is the abstraction of KiriminAja API for access from applications written with PHP.
 
 ## Documentation
 
