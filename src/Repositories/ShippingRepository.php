@@ -6,6 +6,7 @@ use KiriminAja\Base\ApiBase;
 use KiriminAja\Contracts\ShippingContract;
 use KiriminAja\Models\PackageData;
 use KiriminAja\Models\RequestPickupData;
+use KiriminAja\Models\ShippingFullPriceData;
 use KiriminAja\Models\ShippingPriceData;
 
 class ShippingRepository implements ShippingContract {
@@ -16,7 +17,7 @@ class ShippingRepository implements ShippingContract {
         return self::api()->post('api/mitra/shipping_price', $data->toArray());
     }
 
-    public function fullShippingPrice(object $data): array {
+    public function fullShippingPrice(ShippingFullPriceData $data): array {
         return self::api()->post('api/mitra/v5/shipping_price', $data->toArray());
     }
 
