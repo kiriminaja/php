@@ -11,7 +11,7 @@ interface ShippingContract {
     public function fullShippingPrice(ShippingFullPriceData $data);
     public function schedules();
     public function requestPickup(RequestPickupData $data);
-    public function payment($paymentID);
-    public function cancel($awb, $reason);
-    public function tracking($orderID);
+    public function payment(string $paymentID);
+    public function cancel(string $awb, string $reason);
+    public function tracking(string $orderID);
 }

@@ -3,6 +3,6 @@
 namespace KiriminAja\Contracts;
 
 interface PreferenceContract {
-    public function setWhiteListExpedition($services);
-    public function setCallback($url);
+    public function setWhiteListExpedition(array $services);
+    public function setCallback(string $url);
 }

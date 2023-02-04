@@ -5,8 +5,8 @@ namespace KiriminAja\Responses;
 use KiriminAja\Base\ModelBase;
 
 class ServiceResponse extends ModelBase {
-    public $status = false;
-    public $message = "-";
+    public bool $status = false;
+    public string $message = "-";
     public $data;
 
     /**

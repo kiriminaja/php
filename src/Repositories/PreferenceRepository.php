@@ -9,11 +9,19 @@ class PreferenceRepository implements PreferenceContract {
 
     use ApiBase;
 
-    public function setWhiteListExpedition($services): array {
+    /**
+     * @param $services
+     * @return array
+     */
+    public function setWhiteListExpedition(array $services): array {
         return self::api()->post('api/mitra/v3/set_whitelist_services', ['services' => $services]);
     }
 
-    public function setCallback($url): array {
+    /**
+     * @param string $url
+     * @return array
+     */
+    public function setCallback(string $url): array {
         return self::api()->post('api/mitra/set_callback', ['url' => $url]);
     }
 }
