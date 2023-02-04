@@ -9,8 +9,16 @@ use KiriminAja\Responses\ServiceResponse;
 
 interface KiriminAjaContract {
 
+    /**
+     * @param $provinceID
+     * @return \KiriminAja\Responses\ServiceResponse
+     */
     public static function getCity($provinceID): ServiceResponse;
 
+    /**
+     * @param $name
+     * @return \KiriminAja\Responses\ServiceResponse
+     */
     public static function getDistrictByName($name): ServiceResponse;
 
     public static function getDistrict($cityID): ServiceResponse;
@@ -33,6 +41,10 @@ interface KiriminAjaContract {
 
     public static function cancelShipment($awb, $reason): ServiceResponse;
 
+    /**
+     * @param $orderID
+     * @return \KiriminAja\Responses\ServiceResponse
+     */
     public static function getTracking($orderID): ServiceResponse;
 
 }

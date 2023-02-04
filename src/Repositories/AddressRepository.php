@@ -5,23 +5,43 @@ namespace KiriminAja\Repositories;
 use KiriminAja\Base\ApiBase;
 use KiriminAja\Contracts\AddressContract;
 
-class AddressRepository implements AddressContract {
+class AddressRepository implements AddressContract
+{
 
     use ApiBase;
 
-    public function provinces(): array {
+    /**
+     * @return array
+     */
+    public function provinces(): array
+    {
         return self::api()->post('api/mitra/province', null);
     }
 
-    public function cities($provinceId): array {
+    /**
+     * @param int $provinceId
+     * @return array
+     */
+    public function cities(int $provinceId): array
+    {
         return self::api()->post('api/mitra/city', ['provinsi_id' => $provinceId]);
     }
 
-    public function districts($cityId): array {
+    /**
+     * @param int $cityId
+     * @return array
+     */
+    public function districts(int $cityId): array
+    {
         return self::api()->post('api/mitra/kecamatan', ['kabupaten_id' => $cityId]);
     }
 
-    public function districtsByName($name): array {
+    /**
+     * @param string $name
+     * @return array
+     */
+    public function districtsByName(string $name): array
+    {
         return self::api()->post('api/mitra/v2/get_address_by_name', ['search' => $name]);
     }
 }
