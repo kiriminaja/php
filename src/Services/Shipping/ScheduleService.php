@@ -10,12 +10,15 @@ use KiriminAja\Responses\ServiceResponse;
 class ScheduleService extends ServiceBase {
 
 
-    private $shippingRepo;
+    private ShippingRepository $shippingRepo;
 
     public function __construct() {
         $this->shippingRepo = new ShippingRepository;
     }
 
+    /**
+     * @return \KiriminAja\Responses\ServiceResponse
+     */
     public function call(): ServiceResponse {
         try {
             [$status, $data] = $this->shippingRepo->schedules();

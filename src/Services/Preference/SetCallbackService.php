@@ -6,29 +6,26 @@ use KiriminAja\Base\ServiceBase;
 use KiriminAja\Repositories\PreferenceRepository;
 use KiriminAja\Responses\ServiceResponse;
 
-class SetCallbackService extends ServiceBase {
+class SetCallbackService extends ServiceBase
+{
 
-    private $url;
-    private $preferenceRepo;
+    private string               $url;
+    private PreferenceRepository $preferenceRepo;
 
     /**
-     * @param $url
+     * @param string $url
      */
-    public function __construct($url) {
-        $this->url = $url;
+    public function __construct(string $url)
+    {
+        $this->url            = $url;
         $this->preferenceRepo = new PreferenceRepository;
     }
 
-    public function call(): ServiceResponse {
-
-        if(is_null($this->url)){
-            return self::error(null, "Url Params Can't be Blank");
-        }
-
-        if(is_numeric($this->url)){
-            return self::error(null, "Url params must be an string");
-        }
-
+    /**
+     * @return \KiriminAja\Responses\ServiceResponse
+     */
+    public function call(): ServiceResponse
+    {
         try {
             [$status, $data] = $this->preferenceRepo->setCallback($this->url);
             if ($status && $data['status']) {

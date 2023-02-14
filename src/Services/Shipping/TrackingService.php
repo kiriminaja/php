@@ -6,30 +6,27 @@ use KiriminAja\Base\ServiceBase;
 use KiriminAja\Repositories\ShippingRepository;
 use KiriminAja\Responses\ServiceResponse;
 
-class TrackingService extends ServiceBase {
+class TrackingService extends ServiceBase
+{
 
-    private $orderID;
-    private $shippingRepo;
+    private string             $orderID;
+    private ShippingRepository $shippingRepo;
 
     /**
-     * @param $orderID
+     * @param string $orderID
      */
-    public function __construct($orderID) {
+    public function __construct(string $orderID)
+    {
         $this->orderID      = $orderID;
         $this->shippingRepo = new ShippingRepository;
     }
 
 
-    public function call(): ServiceResponse {
-
-        if (is_null($this->orderID)){
-            return self::error(null, "Params order_id Can't be blank");
-        }
-
-        if (is_numeric($this->orderID)){
-            return self::error(null, "Params order_id must be an string");
-        }
-
+    /**
+     * @return \KiriminAja\Responses\ServiceResponse
+     */
+    public function call(): ServiceResponse
+    {
         try {
             [$status, $data] = $this->shippingRepo->tracking($this->orderID);
             if ($status && $data['status']) {

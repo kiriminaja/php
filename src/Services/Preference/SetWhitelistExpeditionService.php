@@ -8,21 +8,22 @@ use KiriminAja\Responses\ServiceResponse;
 
 class SetWhitelistExpeditionService extends ServiceBase {
 
-    private $services;
-    private $preferenceRepo;
+    private array                $services;
+    private PreferenceRepository $preferenceRepo;
 
     /**
-     * @param $services
+     * @param array $services
      */
-    public function __construct($services) {
+    public function __construct(array $services) {
         $this->services = $services;
         $this->preferenceRepo = new PreferenceRepository;
     }
 
 
+    /**
+     * @return \KiriminAja\Responses\ServiceResponse
+     */
     public function call(): ServiceResponse {
-
-        if (!is_array($this->services)) return self::error(null, 'Parameter must be array');
 
         if(count(array_filter($this->services)) != count($this->services)) {
             return self::error(null, "Array of value Can't be empty");

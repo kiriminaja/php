@@ -6,7 +6,6 @@ use KiriminAja\Base\ModelBase;
 
 class PackageData extends ModelBase
 {
-
     public string  $order_id;                                         //	string(max:20)	false	Order ID, harus memiliki prefix berupa string
     public string  $destination_name;                                 //	string(max:50)	false	Nama penerima
     public string  $destination_phone;                                //	string(max:15)	false	Nomor telepon diawali dengan angka 0

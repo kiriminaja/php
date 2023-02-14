@@ -10,7 +10,7 @@ class PreferenceRepository implements PreferenceContract {
     use ApiBase;
 
     /**
-     * @param $services
+     * @param array $services
      * @return array
      */
     public function setWhiteListExpedition(array $services): array {

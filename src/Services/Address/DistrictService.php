@@ -7,23 +7,21 @@ use KiriminAja\Repositories\AddressRepository;
 use KiriminAja\Responses\ServiceResponse;
 
 class DistrictService extends ServiceBase {
-    private $addressRepository;
-    private $cityID;
+    private AddressRepository $addressRepository;
+    private int               $cityID;
 
     /**
-     * @param $cityID
+     * @param int $cityID
      */
-    public function __construct($cityID) {
+    public function __construct(int $cityID) {
         $this->addressRepository = new AddressRepository;
         $this->cityID            = $cityID;
     }
 
+    /**
+     * @return \KiriminAja\Responses\ServiceResponse
+     */
     public function call(): ServiceResponse {
-
-        if (is_string($this->cityID)) {
-            return self::error(null, 'Params city_id must be in integer');
-        }
-
         try {
             [$status, $data] = $this->addressRepository->districts($this->cityID);
             if ($status && $data['status']) {

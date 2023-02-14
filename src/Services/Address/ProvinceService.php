@@ -9,7 +9,7 @@ use KiriminAja\Responses\ServiceResponse;
 class ProvinceService extends ServiceBase
 {
 
-    private $addressRepository;
+    private AddressRepository $addressRepository;
 
     public function __construct()
     {

@@ -23,66 +23,132 @@ use KiriminAja\Services\Shipping\RequestPickupService;
 use KiriminAja\Services\Shipping\ScheduleService;
 use KiriminAja\Services\Shipping\TrackingService;
 
-class KiriminAja implements KiriminAjaContract {
+class KiriminAja implements KiriminAjaContract
+{
 
     /**
      * Call service when called
      * @param ServiceContract $service
      * @return ServiceResponse
      */
-    private static function call(ServiceContract $service): ServiceResponse {
+    private static function call(ServiceContract $service): ServiceResponse
+    {
         return $service->call();
     }
 
-    public static function getCity($provinceID): ServiceResponse {
+    /**
+     * @param int $provinceID
+     * @return \KiriminAja\Responses\ServiceResponse
+     */
+    public static function getCity(int $provinceID): ServiceResponse
+    {
         return self::call((new CityService($provinceID)));
     }
 
-    public static function getDistrictByName($name): ServiceResponse {
+    /**
+     * @param string $name
+     * @return \KiriminAja\Responses\ServiceResponse
+     */
+    public static function getDistrictByName(string $name): ServiceResponse
+    {
         return self::call((new DistrictByNameService($name)));
     }
 
-    public static function getDistrict($cityID): ServiceResponse {
+    /**
+     * @param int $cityID
+     * @return \KiriminAja\Responses\ServiceResponse
+     */
+    public static function getDistrict(int $cityID): ServiceResponse
+    {
         return self::call((new DistrictService($cityID)));
     }
 
-    public static function getProvince(): ServiceResponse {
+    /**
+     * @return \KiriminAja\Responses\ServiceResponse
+     */
+    public static function getProvince(): ServiceResponse
+    {
         return self::call((new ProvinceService()));
     }
 
-    public static function setWhiteListExpedition($services): ServiceResponse {
+    /**
+     * @param array $services
+     * @return \KiriminAja\Responses\ServiceResponse
+     */
+    public static function setWhiteListExpedition(array $services): ServiceResponse
+    {
         return self::call((new SetWhitelistExpeditionService($services)));
     }
 
-    public static function setCallback($url): ServiceResponse {
+    /**
+     * @param string $url
+     * @return \KiriminAja\Responses\ServiceResponse
+     */
+    public static function setCallback(string $url): ServiceResponse
+    {
         return self::call((new SetCallbackService($url)));
     }
 
-    public static function getPrice(ShippingPriceData $data): ServiceResponse {
+    /**
+     * @param \KiriminAja\Models\ShippingPriceData $data
+     * @return \KiriminAja\Responses\ServiceResponse
+     */
+    public static function getPrice(ShippingPriceData $data): ServiceResponse
+    {
         return self::call((new PriceService($data)));
     }
 
-    public static function fullShippingPrice(ShippingFullPriceData $data): ServiceResponse {
+    /**
+     * @param \KiriminAja\Models\ShippingFullPriceData $data
+     * @return \KiriminAja\Responses\ServiceResponse
+     */
+    public static function fullShippingPrice(ShippingFullPriceData $data): ServiceResponse
+    {
         return self::call((new FullShippingPrice($data)));
     }
 
-    public static function getSchedules(): ServiceResponse {
+    /**
+     * @return \KiriminAja\Responses\ServiceResponse
+     */
+    public static function getSchedules(): ServiceResponse
+    {
         return self::call((new ScheduleService()));
     }
 
-    public static function requestPickup(RequestPickupData $data): ServiceResponse {
+    /**
+     * @param \KiriminAja\Models\RequestPickupData $data
+     * @return \KiriminAja\Responses\ServiceResponse
+     */
+    public static function requestPickup(RequestPickupData $data): ServiceResponse
+    {
         return self::call((new RequestPickupService($data)));
     }
 
-    public static function getPayment($paymentID): ServiceResponse {
+    /**
+     * @param string $paymentID
+     * @return \KiriminAja\Responses\ServiceResponse
+     */
+    public static function getPayment(string $paymentID): ServiceResponse
+    {
         return self::call((new GetPaymentService($paymentID)));
     }
 
-    public static function cancelShipment($awb, $reason): ServiceResponse {
+    /**
+     * @param string $awb
+     * @param string $reason
+     * @return \KiriminAja\Responses\ServiceResponse
+     */
+    public static function cancelShipment(string $awb, string $reason): ServiceResponse
+    {
         return self::call((new CancelShippingService($awb, $reason)));
     }
 
-    public static function getTracking($orderID): ServiceResponse {
+    /**
+     * @param string $orderID
+     * @return \KiriminAja\Responses\ServiceResponse
+     */
+    public static function getTracking(string $orderID): ServiceResponse
+    {
         return self::call((new TrackingService($orderID)));
     }
 }
