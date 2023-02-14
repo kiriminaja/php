@@ -2,15 +2,17 @@
 
 namespace KiriminAja\Base\Config\Cache;
 
-class _CacheMode {
-    private static $key = '---KiriminAja-Cached-Mode-Key---';
+class _CacheMode
+{
+    private static string $key = '---KiriminAja-Cached-Mode-Key---';
 
     /**
      * allowed mode
      *
      * @return array
      */
-    private static function allowedMode(): array {
+    private static function allowedMode(): array
+    {
         return [Mode::Production, Mode::Staging];
     }
 
@@ -19,9 +21,11 @@ class _CacheMode {
      *
      * @param Mode::string $mode
      * @return void
+     * @throws \Exception
      */
-    public function setMode($mode) {
-        if (!in_array($mode, self::allowedMode())) throw new \Exception("Mode not allowed, allowed mode ".json_encode(self::allowedMode()).", your mode $mode");
+    public function setMode($mode)
+    {
+        if (!in_array($mode, self::allowedMode())) throw new \Exception("Mode not allowed, allowed mode " . json_encode(self::allowedMode()) . ", your mode $mode");
         Cache::setCache(self::$key, $mode);
     }
 
@@ -30,7 +34,8 @@ class _CacheMode {
      *
      * @return mixed|null
      */
-    public function getMode() {
+    public function getMode()
+    {
         return Cache::getCache(self::$key) ?? Mode::Staging;
     }
 
@@ -39,7 +44,8 @@ class _CacheMode {
      *
      * @return bool
      */
-    public function isStaging(): bool {
+    public function isStaging(): bool
+    {
         return strtolower($this->getMode()) == "staging";
     }
 
@@ -48,7 +54,8 @@ class _CacheMode {
      *
      * @return bool
      */
-    public function isProduction(): bool {
+    public function isProduction(): bool
+    {
         return strtolower($this->getMode()) == "production";
     }
 }

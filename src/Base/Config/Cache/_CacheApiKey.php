@@ -2,8 +2,9 @@
 
 namespace KiriminAja\Base\Config\Cache;
 
-class _CacheApiKey {
-    private static $key = '---KiriminAja-Cached-Api-Key---';
+class _CacheApiKey
+{
+    private static string $key = '---KiriminAja-Cached-Api-Key---';
 
     /**
      * Setter key
@@ -12,7 +13,8 @@ class _CacheApiKey {
      * @return void
      * @throws \Exception
      */
-    public function setKey($apiKey) {
+    public function setKey($apiKey)
+    {
         if (!is_string($apiKey)) throw new \Exception("api key must be string");
         Cache::setCache(self::$key, $apiKey);
     }
@@ -22,7 +24,8 @@ class _CacheApiKey {
      *
      * @return mixed|null
      */
-    public function getKey() {
+    public function getKey()
+    {
         return Cache::getCache(self::$key);
     }
 
