@@ -2,7 +2,8 @@
 
 namespace KiriminAja\Base\Config\Cache;
 
-final class Mode {
+final class Mode
+{
     public const Staging = 'staging';
-    public const Production  = 'production';
+    public const Production = 'production';
 }

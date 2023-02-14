@@ -8,7 +8,8 @@ use GuzzleHttp\Exception\GuzzleException;
 use KiriminAja\Base\Config\Cache\Mode;
 use KiriminAja\Base\Config\KiriminAjaConfig;
 
-trait ApiOptions {
+trait ApiOptions
+{
 
     private $method;
 
@@ -18,7 +19,8 @@ trait ApiOptions {
      * @return string
      * @throws Exception
      */
-    private static function baseURL(): string {
+    private static function baseURL(): string
+    {
         switch (KiriminAjaConfig::mode()->getMode()) {
             case Mode::Staging:
                 return "https://tdev.kiriminaja.com/";
@@ -34,7 +36,8 @@ trait ApiOptions {
      *
      * @return string[]
      */
-    protected static function getHeaders(): array {
+    protected static function getHeaders(): array
+    {
         return [
             "Content-Type"  => "application/json",
             "Accept"        => "application/json",
@@ -48,7 +51,8 @@ trait ApiOptions {
      * @param $data
      * @return array
      */
-    protected function dataOption($data): array {
+    protected function dataOption($data): array
+    {
         switch (strtoupper($this->method)) {
             case "GET" :
                 return [
@@ -71,8 +75,9 @@ trait ApiOptions {
      * @return string
      * @throws Exception
      */
-    protected static function url($endpoint): string {
-        return self::baseURL().$endpoint;
+    protected static function url($endpoint): string
+    {
+        return self::baseURL() . $endpoint;
     }
 
     /**
@@ -80,7 +85,8 @@ trait ApiOptions {
      *
      * @return Client
      */
-    protected static function client(): Client {
+    protected static function client(): Client
+    {
         return new Client;
     }
 
@@ -92,7 +98,8 @@ trait ApiOptions {
      * @param $data
      * @return array
      */
-    protected function request($method, $endpoint, $data): array {
+    protected function request($method, $endpoint, $data): array
+    {
         $this->method = $method;
         try {
             $request = self::client()->request($this->method, self::url($endpoint), $this->dataOption($data));

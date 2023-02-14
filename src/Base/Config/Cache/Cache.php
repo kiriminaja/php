@@ -2,12 +2,14 @@
 
 namespace KiriminAja\Base\Config\Cache;
 
-class Cache {
+class Cache
+{
 
-    private static $prefixCache = "KiriminAja--ApIlkhphpv7t096y--";
+    private static string $prefixCache = "KiriminAja--ApIlkhphpv7t096y--";
 
-    public function __construct() {
-        $cached = fopen(self::$cachedFile, 'w');
+    public function __construct()
+    {
+        $cached = fopen(self::$prefixCache, 'w');
         fwrite($cached, ob_get_contents());
         fclose($cached);
     }
@@ -18,7 +20,8 @@ class Cache {
      * @param $key
      * @return mixed|null
      */
-    public static function getCache($key) {
+    public static function getCache($key)
+    {
         return $_SESSION[self::$prefixCache . $key] ?? null;
     }
 
@@ -29,7 +32,8 @@ class Cache {
      * @param $value
      * @return void
      */
-    public static function setCache($key, $value) {
-        $_SESSION[self::$prefixCache.$key] = $value;
+    public static function setCache($key, $value)
+    {
+        $_SESSION[self::$prefixCache . $key] = $value;
     }
 }

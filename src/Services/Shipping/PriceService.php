@@ -7,27 +7,32 @@ use KiriminAja\Models\ShippingPriceData;
 use KiriminAja\Repositories\ShippingRepository;
 use KiriminAja\Responses\ServiceResponse;
 
-class PriceService extends ServiceBase {
+class PriceService extends ServiceBase
+{
 
-    private $data;
-    private $shippingRepo;
+    private ShippingPriceData  $data;
+    private ShippingRepository $shippingRepo;
 
     /**
      * @param ShippingPriceData $data
      */
-    public function __construct(ShippingPriceData $data) {
+    public function __construct(ShippingPriceData $data)
+    {
         $this->data         = $data;
         $this->shippingRepo = new ShippingRepository;
     }
 
 
-    public function call(): ServiceResponse {
-
+    /**
+     * @return \KiriminAja\Responses\ServiceResponse
+     */
+    public function call(): ServiceResponse
+    {
         if ($this->data->origin == null || $this->data->destination == null || $this->data->weight == null) {
             return self::error(null, "Params origin, destination, weight Can't be blank");
         }
 
-        if (is_string($this->data->origin) || is_string($this->data->destination) || is_string($this->data->weight)){
+        if (is_string($this->data->origin) || is_string($this->data->destination) || is_string($this->data->weight)) {
             return self::error(null, "Params origin, destination, weight must be an integers");
         }
 

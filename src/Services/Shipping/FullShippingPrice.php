@@ -10,24 +10,29 @@ use KiriminAja\Responses\ServiceResponse;
 class FullShippingPrice extends ServiceBase
 {
 
-    private $data;
-    private $shippingRepo;
+    private ShippingFullPriceData $data;
+    private ShippingRepository    $shippingRepo;
 
     /**
      * @param ShippingFullPriceData $data
      */
-    public function __construct(ShippingFullPriceData $data) {
+    public function __construct(ShippingFullPriceData $data)
+    {
         $this->data         = $data;
         $this->shippingRepo = new ShippingRepository;
     }
 
-    public function call(): ServiceResponse {
+    /**
+     * @return \KiriminAja\Responses\ServiceResponse
+     */
+    public function call(): ServiceResponse
+    {
 
         if ($this->data->origin == null || $this->data->destination == null || $this->data->weight == null) {
             return self::error(null, "Params origin, destination, weight Can't be blank");
         }
 
-        if (is_string($this->data->origin) || is_string($this->data->destination) || is_string($this->data->weight)){
+        if (is_string($this->data->origin) || is_string($this->data->destination) || is_string($this->data->weight)) {
             return self::error(null, "Params origin, destination, weight must be an integers");
         }
 

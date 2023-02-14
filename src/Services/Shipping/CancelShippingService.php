@@ -6,7 +6,8 @@ use KiriminAja\Base\ServiceBase;
 use KiriminAja\Repositories\ShippingRepository;
 use KiriminAja\Responses\ServiceResponse;
 
-class CancelShippingService extends ServiceBase {
+class CancelShippingService extends ServiceBase
+{
 
     private $awb, $reason, $shippingRepo;
 
@@ -14,20 +15,22 @@ class CancelShippingService extends ServiceBase {
      * @param $awb
      * @param $reason
      */
-    public function __construct($awb, $reason) {
+    public function __construct($awb, $reason)
+    {
         $this->awb          = $awb;
         $this->reason       = $reason;
         $this->shippingRepo = new ShippingRepository;
     }
 
 
-    public function call(): ServiceResponse {
+    public function call(): ServiceResponse
+    {
 
-        if (is_null($this->awb && $this->reason)){
+        if (is_null($this->awb && $this->reason)) {
             return self::error(null, "Params Can't be blank");
         }
 
-        if (is_numeric($this->awb && $this->reason)){
+        if (is_numeric($this->awb && $this->reason)) {
             return self::error(null, "Params must be an string");
         }
 

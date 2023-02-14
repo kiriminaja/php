@@ -7,22 +7,27 @@ use KiriminAja\Models\RequestPickupData;
 use KiriminAja\Repositories\ShippingRepository;
 use KiriminAja\Responses\ServiceResponse;
 
-class RequestPickupService extends ServiceBase {
+class RequestPickupService extends ServiceBase
+{
 
-    private $data;
-    private $shippingRepo;
+    private RequestPickupData  $data;
+    private ShippingRepository $shippingRepo;
 
     /**
-     * @param $data
+     * @param \KiriminAja\Models\RequestPickupData $data
      */
-    public function __construct(RequestPickupData $data) {
+    public function __construct(RequestPickupData $data)
+    {
         $this->data         = $data;
         $this->shippingRepo = new ShippingRepository;
     }
 
-    public function call(): ServiceResponse {
-
-        if (is_null($this->data->address) || is_null($this->data->phone) || is_null($this->data->name) || is_null($this->data->kecamatan_id) || is_null($this->data->schedule) || $this->data->packages == []){
+    /**
+     * @return \KiriminAja\Responses\ServiceResponse
+     */
+    public function call(): ServiceResponse
+    {
+        if (is_null($this->data->address) || is_null($this->data->phone) || is_null($this->data->name) || is_null($this->data->kecamatan_id) || is_null($this->data->schedule) || $this->data->packages == []) {
             return self::error(null, "Required params can't be blank");
         }
 

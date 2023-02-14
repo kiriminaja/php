@@ -7,27 +7,25 @@ use KiriminAja\Repositories\AddressRepository;
 use KiriminAja\Responses\ServiceResponse;
 use KiriminAja\Utils\Validator;
 
-class DistrictByNameService extends ServiceBase {
-    private $addressRepository;
-    private $name;
+class DistrictByNameService extends ServiceBase
+{
+    private AddressRepository $addressRepository;
+    private string            $name;
 
     /**
-     * @param $name
+     * @param string $name
      */
-    public function __construct($name) {
+    public function __construct(string $name)
+    {
         $this->addressRepository = new AddressRepository;
         $this->name              = $name;
     }
 
-    public function call(): ServiceResponse {
-
-        if(is_null($this->name)){
-            return self::error(null, "Params name Can't be blank");
-        }
-
-        if(is_numeric($this->name)){
-            return self::error(null, 'Params name must be an string');
-        }
+    /**
+     * @return \KiriminAja\Responses\ServiceResponse
+     */
+    public function call(): ServiceResponse
+    {
 
         try {
             [$status, $data] = $this->addressRepository->districtsByName($this->name);

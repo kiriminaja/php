@@ -9,16 +9,16 @@ use KiriminAja\Utils\Validator;
 
 class CityService extends ServiceBase
 {
-    private $addressRepository;
-    private $provinceID;
+    private AddressRepository $addressRepository;
+    private int               $provinceID;
 
     /**
-     * @param $provinceID
+     * @param int $provinceID
      */
-    public function __construct($provinceID)
+    public function __construct(int $provinceID)
     {
         $this->addressRepository = new AddressRepository;
-        $this->provinceID = $provinceID;
+        $this->provinceID        = $provinceID;
     }
 
     /**
@@ -43,10 +43,6 @@ class CityService extends ServiceBase
         // This validation doesn't work
         if ($this->validation()->fails()) return self::error(null, $this->validation()->errors()->all()[0]);
 
-        if (is_string($this->provinceID)) {
-            return self::error(null, 'Params province_id must be in integer');
-        }
-
         try {
             [$status, $data] = $this->addressRepository->cities($this->provinceID);
             if ($status) {
@@ -57,7 +53,7 @@ class CityService extends ServiceBase
             }
             return self::error(null, json_encode($data));
         } catch (\Throwable $th) {
-            return self::error(null, $th->getMessage().' line '.$th->getLine());
+            return self::error(null, $th->getMessage() . ' line ' . $th->getLine());
         }
     }
 }
