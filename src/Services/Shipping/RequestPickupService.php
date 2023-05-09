@@ -14,7 +14,7 @@ class RequestPickupService extends ServiceBase
     private ShippingRepository $shippingRepo;
 
     /**
-     * @param \KiriminAja\Models\RequestPickupData $data
+     * @param RequestPickupData $data
      */
     public function __construct(RequestPickupData $data)
     {
@@ -23,7 +23,7 @@ class RequestPickupService extends ServiceBase
     }
 
     /**
-     * @return \KiriminAja\Responses\ServiceResponse
+     * @return ServiceResponse
      */
     public function call(): ServiceResponse
     {

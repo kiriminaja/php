@@ -23,6 +23,4 @@ composer.phar
 
 .idea/*
 .phpunit.result.cache
-
-/.github
-
+/.phpunit.cache

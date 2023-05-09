@@ -2,7 +2,7 @@
 
 namespace KiriminAja\Repositories;
 
-use KiriminAja\Base\ApiBase;
+use KiriminAja\Base\Traits\ApiBase;
 use KiriminAja\Contracts\ShippingContract;
 use KiriminAja\Models\PackageData;
 use KiriminAja\Models\RequestPickupData;

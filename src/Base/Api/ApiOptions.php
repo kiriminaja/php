@@ -12,6 +12,23 @@ trait ApiOptions
 {
 
     private $method;
+    private bool $useInstant = false;
+
+    /**
+     * @return bool
+     */
+    public function isUseInstant(): bool
+    {
+        return $this->useInstant;
+    }
+
+    /**
+     * @param bool $useInstant
+     */
+    public function setUseInstant(bool $useInstant): void
+    {
+        $this->useInstant = $useInstant;
+    }
 
     /**
      * Getter base url
@@ -27,7 +44,23 @@ trait ApiOptions
             case Mode::Production :
                 return "https://kiriminaja.com/";
             default :
-                throw new Exception("unkown mode");
+                throw new Exception("unknown mode");
+        }
+    }
+
+    /**
+     * @return string
+     * @throws Exception
+     */
+    private static function baseURLInstant(): string
+    {
+        switch (KiriminAjaConfig::mode()->getMode()) {
+            case Mode::Staging:
+                return "https://apieks-staging.kiriminaja.com/";
+            case Mode::Production :
+                return "https://api.kiriminaja.com/";
+            default :
+                throw new Exception("Unknown mode");
         }
     }
 
@@ -39,8 +72,8 @@ trait ApiOptions
     protected static function getHeaders(): array
     {
         return [
-            "Content-Type"  => "application/json",
-            "Accept"        => "application/json",
+            "Content-Type" => "application/json",
+            "Accept" => "application/json",
             "Authorization" => "Bearer " . KiriminAjaConfig::apiKey()->getKey(),
         ];
     }
@@ -57,13 +90,13 @@ trait ApiOptions
             case "GET" :
                 return [
                     "headers" => self::getHeaders(),
-                    "query"   => $data
+                    "query" => $data
                 ];
             case "POST" :
             default:
                 return [
                     "headers" => self::getHeaders(),
-                    "json"    => $data
+                    "json" => $data
                 ];
         }
     }
@@ -77,7 +110,7 @@ trait ApiOptions
      */
     protected static function url($endpoint): string
     {
-        return self::baseURL() . $endpoint;
+        return ((new Api)->isUseInstant() ? self::baseURLInstant() : self::baseURL()) . $endpoint;
     }
 
     /**

@@ -8,6 +8,10 @@ class ServiceResponse extends ModelBase
 {
     public bool   $status  = false;
     public string $message = "-";
+
+    /**
+     * @var mixed $data
+     */
     public        $data;
 
     /**

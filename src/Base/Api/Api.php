@@ -10,11 +10,19 @@ class Api implements ServiceClientContract {
     use ApiOptions;
 
     /**
+     * @param bool $useInstant
+     */
+    public function __construct(bool $useInstant = false)
+    {
+        $this->setUseInstant($useInstant);
+    }
+
+    /**
      * @param string $endPoint
      * @param $data
      * @return array
      */
-    public function get(string $endPoint, $data): array {
+    public function get(string $endPoint, $data = null): array {
         return $this->request('GET', $endPoint, $data);
     }
 
@@ -41,7 +49,7 @@ class Api implements ServiceClientContract {
      * @param $data
      * @return array
      */
-    public function delete(string $endPoint, $data): array {
+    public function delete(string $endPoint, $data = null): array {
         return $this->request('DELETE', $endPoint, $data);
     }
 }
