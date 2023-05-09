@@ -23,7 +23,7 @@ class TrackingService extends ServiceBase
 
 
     /**
-     * @return \KiriminAja\Responses\ServiceResponse
+     * @return ServiceResponse
      */
     public function call(): ServiceResponse
     {

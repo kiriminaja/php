@@ -5,9 +5,12 @@ namespace KiriminAja\Services;
 use KiriminAja\Base\ServiceBase;
 use KiriminAja\Contracts\KiriminAjaContract;
 use KiriminAja\Contracts\ServiceContract;
+use KiriminAja\Models\PackageInstantData;
 use KiriminAja\Models\RequestPickupData;
+use KiriminAja\Models\RequestPickupInstantData;
 use KiriminAja\Models\ShippingFullPriceData;
 use KiriminAja\Models\ShippingPriceData;
+use KiriminAja\Models\ShippingPriceInstantData;
 use KiriminAja\Responses\ServiceResponse;
 use KiriminAja\Services\Address\CityService;
 use KiriminAja\Services\Address\DistrictByNameService;
@@ -22,6 +25,11 @@ use KiriminAja\Services\Shipping\PriceService;
 use KiriminAja\Services\Shipping\RequestPickupService;
 use KiriminAja\Services\Shipping\ScheduleService;
 use KiriminAja\Services\Shipping\TrackingService;
+use KiriminAja\Services\ShippingInstant\CancelShippingInstantService;
+use KiriminAja\Services\ShippingInstant\FindNewDriverService;
+use KiriminAja\Services\ShippingInstant\GetPaymentInstantService;
+use KiriminAja\Services\ShippingInstant\PriceInstantService;
+use KiriminAja\Services\ShippingInstant\RequestPickupInstantService;
 
 class KiriminAja implements KiriminAjaContract
 {
@@ -38,7 +46,7 @@ class KiriminAja implements KiriminAjaContract
 
     /**
      * @param int $provinceID
-     * @return \KiriminAja\Responses\ServiceResponse
+     * @return ServiceResponse
      */
     public static function getCity(int $provinceID): ServiceResponse
     {
@@ -47,7 +55,7 @@ class KiriminAja implements KiriminAjaContract
 
     /**
      * @param string $name
-     * @return \KiriminAja\Responses\ServiceResponse
+     * @return ServiceResponse
      */
     public static function getDistrictByName(string $name): ServiceResponse
     {
@@ -56,7 +64,7 @@ class KiriminAja implements KiriminAjaContract
 
     /**
      * @param int $cityID
-     * @return \KiriminAja\Responses\ServiceResponse
+     * @return ServiceResponse
      */
     public static function getDistrict(int $cityID): ServiceResponse
     {
@@ -64,7 +72,7 @@ class KiriminAja implements KiriminAjaContract
     }
 
     /**
-     * @return \KiriminAja\Responses\ServiceResponse
+     * @return ServiceResponse
      */
     public static function getProvince(): ServiceResponse
     {
@@ -73,7 +81,7 @@ class KiriminAja implements KiriminAjaContract
 
     /**
      * @param array $services
-     * @return \KiriminAja\Responses\ServiceResponse
+     * @return ServiceResponse
      */
     public static function setWhiteListExpedition(array $services): ServiceResponse
     {
@@ -82,7 +90,7 @@ class KiriminAja implements KiriminAjaContract
 
     /**
      * @param string $url
-     * @return \KiriminAja\Responses\ServiceResponse
+     * @return ServiceResponse
      */
     public static function setCallback(string $url): ServiceResponse
     {
@@ -90,8 +98,8 @@ class KiriminAja implements KiriminAjaContract
     }
 
     /**
-     * @param \KiriminAja\Models\ShippingPriceData $data
-     * @return \KiriminAja\Responses\ServiceResponse
+     * @param ShippingPriceData $data
+     * @return ServiceResponse
      */
     public static function getPrice(ShippingPriceData $data): ServiceResponse
     {
@@ -99,8 +107,17 @@ class KiriminAja implements KiriminAjaContract
     }
 
     /**
-     * @param \KiriminAja\Models\ShippingFullPriceData $data
-     * @return \KiriminAja\Responses\ServiceResponse
+     * @param ShippingPriceInstantData $data
+     * @return ServiceResponse
+     */
+    public static function getPriceInstant(ShippingPriceInstantData $data): ServiceResponse
+    {
+        return self::call((new PriceInstantService($data)));
+    }
+
+    /**
+     * @param ShippingFullPriceData $data
+     * @return ServiceResponse
      */
     public static function fullShippingPrice(ShippingFullPriceData $data): ServiceResponse
     {
@@ -108,7 +125,7 @@ class KiriminAja implements KiriminAjaContract
     }
 
     /**
-     * @return \KiriminAja\Responses\ServiceResponse
+     * @return ServiceResponse
      */
     public static function getSchedules(): ServiceResponse
     {
@@ -116,8 +133,8 @@ class KiriminAja implements KiriminAjaContract
     }
 
     /**
-     * @param \KiriminAja\Models\RequestPickupData $data
-     * @return \KiriminAja\Responses\ServiceResponse
+     * @param RequestPickupData $data
+     * @return ServiceResponse
      */
     public static function requestPickup(RequestPickupData $data): ServiceResponse
     {
@@ -125,30 +142,59 @@ class KiriminAja implements KiriminAjaContract
     }
 
     /**
-     * @param string $paymentID
-     * @return \KiriminAja\Responses\ServiceResponse
+     * @param RequestPickupInstantData $data
+     * @param PackageInstantData ...$package
+     * @return ServiceResponse
      */
-    public static function getPayment(string $paymentID): ServiceResponse
+    public static function requestPickupInstant(RequestPickupInstantData $data, PackageInstantData ...$package): ServiceResponse
     {
-        return self::call((new GetPaymentService($paymentID)));
+        return self::call((new RequestPickupInstantService($data, ...$package)));
     }
 
     /**
-     * @param string $awb
-     * @param string $reason
-     * @return \KiriminAja\Responses\ServiceResponse
+     * @param string $paymentID
+     * @param bool $isInstant
+     * @return ServiceResponse
      */
-    public static function cancelShipment(string $awb, string $reason): ServiceResponse
+    public static function getPayment(string $paymentID, bool $isInstant = false): ServiceResponse
     {
-        return self::call((new CancelShippingService($awb, $reason)));
+        return self::call(
+            $isInstant ?
+                (new GetPaymentInstantService($paymentID)) :
+                (new GetPaymentService($paymentID))
+        );
+    }
+
+    /**
+     * @param string $referenceNo
+     * @param string $reason
+     * @param bool $isInstant
+     * @return ServiceResponse
+     */
+    public static function cancelShipment(string $referenceNo, string $reason, bool $isInstant = false): ServiceResponse
+    {
+        return self::call(
+            $isInstant ?
+                (new CancelShippingInstantService($referenceNo)) :
+                (new CancelShippingService($referenceNo, $reason))
+        );
     }
 
     /**
      * @param string $orderID
-     * @return \KiriminAja\Responses\ServiceResponse
+     * @return ServiceResponse
      */
     public static function getTracking(string $orderID): ServiceResponse
     {
         return self::call((new TrackingService($orderID)));
+    }
+
+    /**
+     * @param string $orderID
+     * @return ServiceResponse
+     */
+    public static function findNewDriver(string $orderID): ServiceResponse
+    {
+        return self::call((new FindNewDriverService($orderID)));
     }
 }
