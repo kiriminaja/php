@@ -36,10 +36,10 @@ or add it manually in your composer.json file.
 Configure package with your account's secret key obtained from KiriminAja Document Assignment.
 ```php
 // When on your dev/stag 
-KiriminAjaConfig::setMode(Mode::Staging)->setApiTokenKey('YOUR_KEY');
+KiriminAjaConfig::setMode(Mode::Staging)::setApiTokenKey('YOUR_KEY');
 
 // When on your production
-KiriminAjaConfig::setMode(Mode::Production)->setApiTokenKey('YOUR_KEY');
+KiriminAjaConfig::setMode(Mode::Production)::setApiTokenKey('YOUR_KEY');
 ```
 
 ## Available Services

@@ -38,7 +38,7 @@ class KiriminAjaConfig {
      */
     public static function setMode($mode): KiriminAjaConfig {
         self::modeApiKey()->mode()->setMode($mode);
-        return new self;
+        return new static();
     }
 
     /**
