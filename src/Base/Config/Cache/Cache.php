@@ -11,7 +11,6 @@ class Cache
     const TIME_1_DAY = 86400;
     const TIME_1_WEEK = 604800;
     const CACHE_FOLDER = '/tmp/kiriminaja-temp-cache';
-    private static string $prefixCache = "KiriminAja--ApIlkhphpv7t096y--";
 
     /**
      * @var bool
