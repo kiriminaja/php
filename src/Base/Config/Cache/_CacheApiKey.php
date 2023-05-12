@@ -13,7 +13,7 @@ class _CacheApiKey
      * @return void
      * @throws \Exception
      */
-    public function setKey($apiKey)
+    public function setKey($apiKey): void
     {
         if (!is_string($apiKey)) throw new \Exception("api key must be string");
         Cache::setCache(self::$key, $apiKey);
@@ -24,7 +24,7 @@ class _CacheApiKey
      *
      * @return mixed|null
      */
-    public function getKey()
+    public function getKey(): mixed
     {
         return Cache::getCache(self::$key);
     }
