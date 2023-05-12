@@ -24,7 +24,8 @@ class KiriminAjaConfig {
      * @return void
      * @throws \Exception
      */
-    public static function setApiTokenKey($apiTokenKey) {
+    public static function setApiTokenKey($apiTokenKey): void
+    {
         self::modeApiKey()->apiKey()->setKey($apiTokenKey);
     }
 
@@ -37,7 +38,7 @@ class KiriminAjaConfig {
      */
     public static function setMode($mode): KiriminAjaConfig {
         self::modeApiKey()->mode()->setMode($mode);
-        return new static();
+        return new self;
     }
 
     /**

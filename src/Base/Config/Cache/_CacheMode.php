@@ -23,7 +23,7 @@ class _CacheMode
      * @return void
      * @throws \Exception
      */
-    public function setMode($mode)
+    public function setMode($mode): void
     {
         if (!in_array($mode, self::allowedMode())) throw new \Exception("Mode not allowed, allowed mode " . json_encode(self::allowedMode()) . ", your mode $mode");
         Cache::setCache(self::$key, $mode);
@@ -34,29 +34,9 @@ class _CacheMode
      *
      * @return mixed|null
      */
-    public function getMode()
+    public function getMode(): mixed
     {
         return Cache::getCache(self::$key) ?? Mode::Staging;
-    }
-
-    /**
-     * Getter is Staging mode
-     *
-     * @return bool
-     */
-    public function isStaging(): bool
-    {
-        return strtolower($this->getMode()) == "staging";
-    }
-
-    /**
-     * Getter is production mode
-     *
-     * @return bool
-     */
-    public function isProduction(): bool
-    {
-        return strtolower($this->getMode()) == "production";
     }
 }
 
