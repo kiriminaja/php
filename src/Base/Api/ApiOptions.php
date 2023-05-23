@@ -11,7 +11,7 @@ use KiriminAja\Base\Config\KiriminAjaConfig;
 trait ApiOptions
 {
 
-    private $method;
+    private string $method;
     private bool $useInstant = false;
 
     /**
@@ -38,30 +38,26 @@ trait ApiOptions
      */
     private static function baseURL(): string
     {
-        switch (KiriminAjaConfig::mode()->getMode()) {
-            case Mode::Staging:
-                return "https://tdev.kiriminaja.com/";
-            case Mode::Production :
-                return "https://kiriminaja.com/";
-            default :
-                throw new Exception("unknown mode");
-        }
+        return match (KiriminAjaConfig::mode()->getMode()) {
+            Mode::Staging => "https://tdev.kiriminaja.com/",
+            Mode::Production => "https://kiriminaja.com/",
+            default => throw new Exception("unknown mode"),
+        };
     }
 
     /**
+     * Getter base url [INSTANT]
+     *
      * @return string
      * @throws Exception
      */
     private static function baseURLInstant(): string
     {
-        switch (KiriminAjaConfig::mode()->getMode()) {
-            case Mode::Staging:
-                return "https://apieks-staging.kiriminaja.com/";
-            case Mode::Production :
-                return "https://api.kiriminaja.com/";
-            default :
-                throw new Exception("Unknown mode");
-        }
+        return match (KiriminAjaConfig::mode()->getMode()) {
+            Mode::Staging => "https://apieks-staging.kiriminaja.com/",
+            Mode::Production => "https://api.kiriminaja.com/",
+            default => throw new Exception("Unknown mode"),
+        };
     }
 
     /**
@@ -86,19 +82,16 @@ trait ApiOptions
      */
     protected function dataOption($data): array
     {
-        switch (strtoupper($this->method)) {
-            case "GET" :
-                return [
-                    "headers" => self::getHeaders(),
-                    "query" => $data
-                ];
-            case "POST" :
-            default:
-                return [
-                    "headers" => self::getHeaders(),
-                    "json" => $data
-                ];
-        }
+        return match (strtoupper($this->method)) {
+            "GET" => [
+                "headers" => self::getHeaders(),
+                "query" => $data
+            ],
+            default => [
+                "headers" => self::getHeaders(),
+                "json" => $data
+            ],
+        };
     }
 
     /**
@@ -108,9 +101,9 @@ trait ApiOptions
      * @return string
      * @throws Exception
      */
-    protected static function url($endpoint): string
+    protected function url($endpoint): string
     {
-        return ((new Api)->isUseInstant() ? self::baseURLInstant() : self::baseURL()) . $endpoint;
+        return ($this->isUseInstant() ? self::baseURLInstant() : self::baseURL()) . $endpoint;
     }
 
     /**
