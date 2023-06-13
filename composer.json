@@ -37,8 +37,7 @@
     "autoload-dev": {
         "psr-4": {
             "KiriminAja\\": [
-                "tests/",
-                "tests/KiriminAja/"
+                "tests/"
             ]
         }
     },
