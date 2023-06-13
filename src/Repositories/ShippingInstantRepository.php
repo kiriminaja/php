@@ -66,7 +66,7 @@ class ShippingInstantRepository implements ShippingInstantContract
      */
     public function create(RequestPickupInstantData $requestPickupInstantData): array
     {
-        return self::api(true)->get('open-api/v1/instants',$requestPickupInstantData->getMapped());
+        return self::api(true)->post('open-api/v1/instants',$requestPickupInstantData->getMapped());
     }
 
     /**
