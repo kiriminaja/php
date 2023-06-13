@@ -37,13 +37,12 @@
     "autoload-dev": {
         "psr-4": {
             "KiriminAja\\": [
-                "tests/",
-                "tests/KiriminAja/"
+                "tests/"
             ]
         }
     },
     "require-dev": {
-        "mockery/mockery": "dev-master",
+        "mockery/mockery": "dev-main",
         "phpunit/phpunit": "^9.5.4"
     }
 }
