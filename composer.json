@@ -43,7 +43,7 @@
         }
     },
     "require-dev": {
-        "mockery/mockery": "dev-master",
+        "mockery/mockery": "dev-main",
         "phpunit/phpunit": "^9.5.4"
     }
 }
