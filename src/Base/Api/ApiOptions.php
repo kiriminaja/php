@@ -39,8 +39,8 @@ trait ApiOptions
     private static function baseURL(): string
     {
         return match (KiriminAjaConfig::mode()->getMode()) {
-            Mode::Staging => "https://tdev.kiriminaja.com/",
-            Mode::Production => "https://kiriminaja.com/",
+            Mode::Staging => "https://sandbox.kiriminaja.com/",
+            Mode::Production => "https://client.kiriminaja.com/",
             default => throw new Exception("unknown mode"),
         };
     }
