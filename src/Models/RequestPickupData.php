@@ -14,4 +14,6 @@ class RequestPickupData extends ModelBase
     public array $packages;        // PackageData of array(min:1 object)	false	Lihat penyusunan list paket berikut
     public string $schedule;        // string	false	Lihat bagian #Pickup Schedules
     public ?string $platform_name = null;
+    public ?float $latitude;       // float   Latitude dari pengirim, diperlukan ketka menggunakan ekspedisi Lion Parcel.
+    public ?float $longitude;       // float   Latitude dari pengirim, diperlukan ketka menggunakan ekspedisi Lion Parcel.
 }

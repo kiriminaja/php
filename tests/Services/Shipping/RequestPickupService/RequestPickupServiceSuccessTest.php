@@ -4,8 +4,11 @@ namespace KiriminAja\Services\Shipping\RequestPickupService;
 
 require_once(__DIR__.'/../ShippingMock.php');
 
+use KiriminAja\Base\Config\Cache\Mode;
+use KiriminAja\Base\Config\KiriminAjaConfig;
 use KiriminAja\Models\PackageData;
 use KiriminAja\Models\RequestPickupData;
+use KiriminAja\Services\KiriminAja;
 use KiriminAja\Services\Shipping\RequestPickupService;
 use KiriminAja\Services\Shipping\ShippingMock;
 use PHPUnit\Framework\TestCase;
@@ -48,7 +51,9 @@ class RequestPickupServiceSuccessTest extends TestCase
         $pickup_object->phone = "082129627860";
         $pickup_object->name = "dipaferdian";
         $pickup_object->kecamatan_id = 5784;
-        $pickup_object->schedule = "2022-11-03 17:00:00";
+        $pickup_object->latitude = -6.3493;
+        $pickup_object->longitude = 106.801376;
+        $pickup_object->schedule = "2023-07-17 17:00:00";
         $pickup_object->zipcode = 16610;
         $pickup_object->platform_name = 'mitra';
         $pickup_object->packages = [];
@@ -66,15 +71,14 @@ class RequestPickupServiceSuccessTest extends TestCase
         $package_data->length = 8;
         $package_data->item_value = 275000;
         $package_data->shipping_cost = 65000;
-        $package_data->service = "sicepat";
-        $package_data->service_type = "SIUNT";
+        $package_data->service = "jne";
+        $package_data->service_type = "REG";
         $package_data->item_name = "Test item name";
         $package_data->package_type_id = 1;
         $package_data->cod = 0;
         $package_data->note = 'test pickup request non cod';
         $package_data->drop = true;
         $pickup_object->packages = [$package_data];
-
         $result = (new RequestPickupService($pickup_object))->call();
 
         self::assertTrue($result->status);
