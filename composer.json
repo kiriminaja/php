@@ -1,48 +1,46 @@
 {
-    "name": "kiriminaja/kiriminaja-php",
-    "description": "PHP clients for KiriminAja API",
-    "version": "1.2.4",
-    "license": "MIT",
-    "keywords": [
-        "kiriminaja",
-        "kirimin aja",
-        "cod",
-        "shipment aggregator",
-        "fulfillment"
-    ],
-    "authors": [
-        {
-            "name": "Daewu Bintara",
-            "email": "daewubintara@kiriminaja.com"
-        },
-        {
-            "name": "Yanuar Aditia",
-            "email": "yanuar@kiriminaja.com"
-        }
-    ],
-    "homepage": "https://kiriminaja.com",
-    "type": "library",
-    "minimum-stability": "stable",
-    "require": {
-        "php": ">=8.0",
-        "guzzlehttp/guzzle": ">=6.0",
-        "ext-json": "*",
-        "rakit/validation": "^1.4"
+  "name": "kiriminaja/kiriminaja-php",
+  "description": "PHP clients for KiriminAja API",
+  "version": "1.2.5",
+  "license": "MIT",
+  "keywords": [
+    "kiriminaja",
+    "kirimin aja",
+    "cod",
+    "shipment aggregator",
+    "fulfillment"
+  ],
+  "authors": [
+    {
+      "name": "Daewu Bintara",
+      "email": "daewubintara@kiriminaja.com"
     },
-    "autoload": {
-        "psr-4": {
-            "KiriminAja\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "KiriminAja\\": [
-                "tests/"
-            ]
-        }
-    },
-    "require-dev": {
-        "mockery/mockery": "dev-main",
-        "phpunit/phpunit": "^9.5.4"
+    {
+      "name": "Yanuar Aditia",
+      "email": "yanuar@kiriminaja.com"
     }
+  ],
+  "homepage": "https://kiriminaja.com",
+  "type": "library",
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=8.0",
+    "guzzlehttp/guzzle": ">=6.0",
+    "ext-json": "*",
+    "rakit/validation": "^1.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "KiriminAja\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "KiriminAja\\": ["tests/"]
+    }
+  },
+  "require-dev": {
+    "mockery/mockery": "dev-main",
+    "phpunit/phpunit": "^9.5.4"
+  }
 }
