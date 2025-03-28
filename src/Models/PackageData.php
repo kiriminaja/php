@@ -26,5 +26,5 @@ class PackageData extends ModelBase
     public int $package_type_id = 1;                                 //	int	false	Tipe paket tersedia untuk sementara 1
     public string $item_name = '';                                   //	string(max:255)	false	Isi paket
     public ?bool $drop = false;                                      //	bool	true	DROP-OFF / CASHLESS
-    public ?string $note = null;                                     //	string(max:50)	true	Special instructions
+    public ?string $note = '';                                     //	string(max:50)	true	Special instructions
 }
