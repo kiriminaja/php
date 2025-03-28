@@ -17,4 +17,13 @@ class ShippingPriceData extends ModelBase {
     public ?int $item_value = null;
     // string or array	true	Untuk mengetahui list kurir silahkan hubungi kami
     public $courier;
+
+    // Lebar paket dalam satuan cm. Nilai ini menunjukkan lebar paket.
+    public int $width = 0;
+
+// Panjang paket dalam satuan cm. Nilai ini menunjukkan panjang paket.
+    public int $length = 0;
+
+// Tinggi paket dalam satuan cm. Nilai ini menunjukkan tinggi paket.
+    public int $height = 0;
 }

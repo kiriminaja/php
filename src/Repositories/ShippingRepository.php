@@ -18,7 +18,7 @@ class ShippingRepository implements ShippingContract {
      * @return array
      */
     public function price(ShippingPriceData $data): array {
-        return self::api()->post('api/mitra/shipping_price', $data->toArray());
+        return self::api()->post('api/mitra/v6.1/shipping_price', $data->toArray());
     }
 
     /**
@@ -26,7 +26,7 @@ class ShippingRepository implements ShippingContract {
      * @return array
      */
     public function fullShippingPrice(ShippingFullPriceData $data): array {
-        return self::api()->post('api/mitra/v5/shipping_price', $data->toArray());
+        return self::api()->post('api/mitra/v6.1/shipping_price', $data->toArray());
     }
 
     /**
@@ -52,7 +52,7 @@ class ShippingRepository implements ShippingContract {
         }
 
         $arrayData = $data->toArray();
-        return self::api()->post('api/mitra/v2/request_pickup', $arrayData);
+        return self::api()->post('api/mitra/v6.1/request_pickup', $arrayData);
     }
 
     /**
