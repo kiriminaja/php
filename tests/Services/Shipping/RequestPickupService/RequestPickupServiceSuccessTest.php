@@ -56,7 +56,6 @@ class RequestPickupServiceSuccessTest extends TestCase
         $pickup_object->schedule = "2023-07-17 17:00:00";
         $pickup_object->zipcode = 16610;
         $pickup_object->platform_name = 'mitra';
-        $pickup_object->packages = [];
 
         $package_data = new PackageData;
         $package_data->order_id = "DEV-2300000024";
@@ -78,7 +77,8 @@ class RequestPickupServiceSuccessTest extends TestCase
         $package_data->cod = 0;
         $package_data->note = 'test pickup request non cod';
         $package_data->drop = true;
-        $pickup_object->packages = [$package_data];
+        $pickup_object->packages->add($package_data);
+
         $result = (new RequestPickupService($pickup_object))->call();
 
         self::assertTrue($result->status);
