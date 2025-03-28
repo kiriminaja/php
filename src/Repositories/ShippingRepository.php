@@ -42,15 +42,15 @@ class ShippingRepository implements ShippingContract {
      * @throws \Exception
      */
     public function requestPickup(RequestPickupData $data): array {
-
-        if (!is_array($data->packages)) throw new \Exception("Package is not array");
-
+        $packages = [];
         foreach ($data->packages as $package) {
             if (!($package instanceof PackageData)) {
                 throw new \Exception("Package is not type of PackageData");
             }
+            $packages[] = $package->toArray();
         }
 
+        $data->packages = $packages;
         $arrayData = $data->toArray();
         return self::api()->post('api/mitra/v6.1/request_pickup', $arrayData);
     }
