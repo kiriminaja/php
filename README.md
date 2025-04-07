@@ -75,43 +75,38 @@ public function get_price() {
 ## Request Pickup Example
 ```php
 public function request_pickup() {
-    $pickup_object = new RequestPickupData;
-    $pickup_object->address = "Jl. Jodipati No.29 Perum Taman Kencana Sejahtera";
-    $pickup_object->phone = "082129627860";
-    $pickup_object->name = "dipaferdian";
-    $pickup_object->kecamatan_id = 5784;
-    $pickup_object->schedule = "2022-11-03 17:00:00";
-    $pickup_object->zipcode = 16610;
-    $pickup_object->platform_name = 'mitra';
-    // Array of packages
-    $pickup_object->packages = [];
+        $package1 = new PackageData();
+        $package1->order_id = "PYH-12312312X";
+        $package1->destination_name = "Alice Smith";
+        $package1->destination_phone = "081123456789";
+        $package1->destination_address = "Jl. Lainnya No. 789";
+        $package1->destination_kecamatan_id = 789;
+        $package1->weight = 300;
+        $package1->width = 5;
+        $package1->height = 5;
+        $package1->length = 5;
+        $package1->item_value = 5000;
+        $package1->shipping_cost = 10000;
+        $package1->service = "anteraja";
+        $package1->service_type = "REG";
+        $package1->item_name = "Produk Lain";
+        $package1->package_type_id = 1;
+        $package1->cod = 0;
+        $package1->note = 'Hallo';
 
-    // Package object
-    $package_data = new PackageData;
-    $package_data->order_id = "DEV-2300000024";
-    $package_data->destination_name = "Flag Test3";
-    $package_data->destination_phone = "082223323333";
-    $package_data->destination_address = "Jl. Magelang KM 11";
-    $package_data->destination_kecamatan_id = 419;
-    $package_data->destination_zipcode = 55598;
-    $package_data->weight = 520;
-    $package_data->width = 8;
-    $package_data->height = 8;
-    $package_data->length = 8;
-    $package_data->item_value = 275000;
-    $package_data->shipping_cost = 65000;
-    $package_data->service = "sicepat";
-    $package_data->service_type = "SIUNT";
-    $package_data->item_name = "Test item name";
-    $package_data->package_type_id = 1;
-    $package_data->cod = 0;
-    $package_data->note = 'test pickup request non cod';
-    $package_data->drop = true;
-    
-    // Bind package object to packages
-    $pickup_object->packages = [$package_data];
-    
-    return KiriminAja::requestPickup($pickup_object);
+        $payload = new RequestPickupData();
+        $payload->address = 'Jl. Example No.123, Indonesia';
+        $payload->phone = '081234567890';
+        $payload->name = 'John Doe';
+        $payload->zipcode = '12345';
+        $payload->kecamatan_id = 1010;
+        $payload->schedule = '2025-05-01 10:00:00';
+        $payload->platform_name = 'MyPlatform';
+        $payload->latitude = -6.200000;
+        $payload->longitude = 106.816666;
+        $payload->packages->add($package1);
+        
+        $resp = KiriminAja::requestPickup($payload);
 }
 ```
 

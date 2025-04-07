@@ -37,7 +37,7 @@ class PriceService extends ServiceBase
         }
 
         try {
-            [$status, $data] = $this->shippingRepo->price($this->data);
+            [$status, $data] = $this->shippingRepo->price($this->data);;
             if ($status && $data['status']) {
                 return self::success(['details' => $data['details'], 'results' => $data['results'],], "loaded");
             }
