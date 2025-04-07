@@ -35,6 +35,7 @@ $mode = 'production' ? Mode::Production : Mode::Staging;
 
 KiriminAjaConfig::setMode($mode)::setApiTokenKey('YOUR_KEY');
 ```
+You can read our test case for the examples https://github.com/kiriminaja/php/blob/main/tests/Services/Shipping/RequestPickupService/RequestPickupServiceSuccessTest.php
 
 ## Contributing
 
