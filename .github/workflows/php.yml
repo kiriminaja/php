@@ -12,11 +12,11 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest-minimal
     strategy:
       matrix:
-        php: ['8.0']
-    name: Test with php version ${{ matrix.php }}
+        php: ['8.0','8.1']
+    name: Compability test with php version ${{ matrix.php }}
     steps:
     - uses: actions/checkout@v4
     - name: Validate composer.json and composer.lock
