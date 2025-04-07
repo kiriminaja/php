@@ -10,10 +10,6 @@
   <a href="https://developer.kiriminaja.com">Documentation</a>
   <span> · </span>
   <a href="mailto:tech@kiriminaja.com">Contact Us</a>
-  <span> · </span>
-  <a href="https://instagram.com/kiriminaja.it">Fun IG Account</a>
-  <span> · </span>
-  <a href="https://developer.kiriminaja.com/blog">Blog</a>
 </h4>
 
 <p align="center">
