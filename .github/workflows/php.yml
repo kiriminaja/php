@@ -5,26 +5,40 @@ on:
   pull_request:
     branches: [ main ]
 
-# Add permissions block at workflow level
 permissions:
   contents: read
   checks: write  # Needed for test results
 
 jobs:
   build:
-    runs-on: ubuntu-latest-minimal
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ['8.0','8.1']
-    name: Compatibility test with php version ${{ matrix.php }}
+        php: ['8.0', '8.1']
+    name: Compatibility test with PHP version ${{ matrix.php }}
     steps:
-    - uses: actions/checkout@v4
-    - name: Validate composer.json and composer.lock
-      run: composer validate
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v4
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
+      - uses: actions/checkout@v4
+
+      - name: Set up PHP ${{ matrix.php }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate
+
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Run PHPUnit tests
+        run: vendor/bin/phpunit tests
