@@ -2,11 +2,31 @@
 
 namespace KiriminAja\Base\Config;
 
+use KiriminAja\Base\Config\Cache\Cache;
 use KiriminAja\Base\Config\Cache\_CacheApiKey;
 use KiriminAja\Base\Config\Cache\_CacheMode;
 use KiriminAja\Base\Config\Cache\_ModeApiKey;
 
 class KiriminAjaConfig {
+
+    /**
+     * Configure the directory used for file-based caching.
+     * Useful for environments where /tmp is not writable.
+     */
+    public static function setCacheDirectory(string $directory): KiriminAjaConfig
+    {
+        Cache::setCacheDirectory($directory);
+        return new static();
+    }
+
+    /**
+     * Disable file-based caching entirely.
+     */
+    public static function disableCache(): KiriminAjaConfig
+    {
+        Cache::setEnabled(false);
+        return new static();
+    }
 
     /**
      * Getter mode api key only for this class

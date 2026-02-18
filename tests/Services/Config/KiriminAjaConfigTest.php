@@ -10,6 +10,8 @@ class KiriminAjaConfigTest extends TestCase {
 
     public function testKiriminAjaConfigSuccess() {
 
+        KiriminAjaConfig::setCacheDirectory(sys_get_temp_dir() . '/kiriminaja-phpunit-cache');
+
         $expectedKey = "234342343";
 
         KiriminAjaConfig::setMode(Mode::Staging)->setApiTokenKey($expectedKey);

@@ -78,10 +78,10 @@ interface KiriminAjaContract {
 
     /**
      * @param RequestPickupInstantData $data
-     * @param PackageInstantData $package
+        * @param PackageInstantData ...$package
      * @return ServiceResponse
      */
-    public static function requestPickupInstant(RequestPickupInstantData $data, PackageInstantData $package): ServiceResponse;
+        public static function requestPickupInstant(RequestPickupInstantData $data, PackageInstantData ...$package): ServiceResponse;
 
     /**
      * @param string $paymentID
