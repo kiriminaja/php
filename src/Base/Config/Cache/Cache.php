@@ -10,12 +10,54 @@ class Cache
     const TIME_12_HOUR = 43200;
     const TIME_1_DAY = 86400;
     const TIME_1_WEEK = 604800;
-    const CACHE_FOLDER = '/tmp/kiriminaja-temp-cache';
+    /**
+     * Default folder name under the OS temp directory.
+     */
+    private const DEFAULT_CACHE_SUBFOLDER = 'kiriminaja-temp-cache';
+
+    /**
+     * Custom cache directory (must be writable). When null, falls back to sys_get_temp_dir().
+     */
+    private static ?string $cacheDirectory = null;
+
+    /**
+     * Allow disabling cache entirely (useful for read-only environments).
+     */
+    private static bool $enabled = true;
 
     /**
      * @var bool
      */
     private static bool $prepared = false;
+
+    /**
+     * Configure where cache files are stored.
+     *
+     * Example: Cache::setCacheDirectory(__DIR__ . '/storage/cache');
+     */
+    public static function setCacheDirectory(string $directory): void
+    {
+        $directory = rtrim($directory, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
+        self::$cacheDirectory = $directory;
+        self::$prepared = false;
+        self::$enabled = true;
+    }
+
+    /**
+     * Returns the cache directory being used.
+     */
+    public static function getCacheDirectory(): string
+    {
+        return self::resolveCacheDirectory();
+    }
+
+    /**
+     * Enable/disable caching.
+     */
+    public static function setEnabled(bool $enabled): void
+    {
+        self::$enabled = $enabled;
+    }
 
     /**
      * Getter cache
@@ -54,6 +96,10 @@ class Cache
                 return null;
             }
             $json_content = json_decode($contents);
+            if (!is_object($json_content) || !isset($json_content->expiry) || !isset($json_content->value)) {
+                self::delete_cache_file($file);
+                return null;
+            }
             $expiry = $json_content->expiry;
             if (time() > $expiry) {
                 self::delete_cache_file($file);
@@ -109,7 +155,7 @@ class Cache
      */
     private static function load_cache_file(string $file): bool|string
     {
-        $file = self::CACHE_FOLDER . $file;
+        $file = self::resolveCacheDirectory() . $file;
         if (file_exists($file)) {
             return file_get_contents($file);
         }
@@ -123,8 +169,8 @@ class Cache
      */
     private static function save_cache_file(string $file, string $data): bool
     {
-        $file = self::CACHE_FOLDER . $file;
-        return (!(file_put_contents($file, $data) === false));
+        $file = self::resolveCacheDirectory() . $file;
+        return (!(@file_put_contents($file, $data) === false));
     }
 
     /**
@@ -133,8 +179,11 @@ class Cache
      */
     private static function delete_cache_file(string $file): bool
     {
-        $file = self::CACHE_FOLDER . $file;
-        return unlink($file);
+        $file = self::resolveCacheDirectory() . $file;
+        if (!file_exists($file)) {
+            return true;
+        }
+        return (@unlink($file) !== false);
     }
 
     /**
@@ -152,13 +201,41 @@ class Cache
      */
     private static function prepare(): bool
     {
+        if (!self::$enabled) {
+            return false;
+        }
         if (self::$prepared) {
             return true;
         }
         self::$prepared = true;
-        if (file_exists(self::CACHE_FOLDER) === false) {
-            return mkdir(self::CACHE_FOLDER);
+
+        $directory = self::resolveCacheDirectory();
+
+        if (file_exists($directory) === false) {
+            if (@mkdir($directory, 0777, true) === false) {
+                self::$enabled = false;
+                return false;
+            }
         }
+
+        if (!is_writable($directory)) {
+            self::$enabled = false;
+            return false;
+        }
+
         return true;
+    }
+
+    /**
+     * @return string Cache directory with trailing directory separator.
+     */
+    private static function resolveCacheDirectory(): string
+    {
+        if (self::$cacheDirectory !== null) {
+            return self::$cacheDirectory;
+        }
+
+        $temp = rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
+        return $temp . self::DEFAULT_CACHE_SUBFOLDER . DIRECTORY_SEPARATOR;
     }
 }

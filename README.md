@@ -24,6 +24,11 @@ Configure package with your account's secret key obtained from KiriminAja Docume
 ```php
 $mode = 'production' ? Mode::Production : Mode::Staging;
 
+// Optional: configure cache directory (useful if /tmp is not writable)
+KiriminAjaConfig::setCacheDirectory(__DIR__ . '/kiriminaja-cache');
+// Or disable caching entirely:
+// KiriminAjaConfig::disableCache();
+
 KiriminAjaConfig::setMode($mode)::setApiTokenKey('YOUR_KEY');
 ```
 You can read our test case for the examples https://github.com/kiriminaja/php/blob/main/tests/Services/Shipping/RequestPickupService/RequestPickupServiceSuccessTest.php
