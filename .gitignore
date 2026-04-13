@@ -24,3 +24,4 @@ composer.phar
 .idea/*
 .phpunit.result.cache
 /.phpunit.cache
+phpunit.xml.bak
