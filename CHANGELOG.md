@@ -1,5 +1,26 @@
 # Changelog
 
+## v2.0.0
+
+[compare changes](https://github.com/kiriminaja/php/compare/2.0.0...v2.0.0)
+
+### 🚀 Enhancements
+
+- Add ExpressService, InstantService, and InstantVehicle enums ([02bf365](https://github.com/kiriminaja/php/commit/02bf365))
+- Improve readme ([2141837](https://github.com/kiriminaja/php/commit/2141837))
+- Add example project ([0af0bb2](https://github.com/kiriminaja/php/commit/0af0bb2))
+
+### 🩹 Fixes
+
+- Adjust formatting of available routes in README ([27877fe](https://github.com/kiriminaja/php/commit/27877fe))
+
+### 🏡 Chore
+
+- V2.0.0 ([f7353c5](https://github.com/kiriminaja/php/commit/f7353c5))
+
+### ❤️ Contributors
+
+- Yanuar Aditia ([@yanuaraditia](https://github.com/yanuaraditia))
 
 ## 1.3.4
 
@@ -31,7 +52,6 @@
 
 - Yanuar Aditia ([@yanuaraditia](https://github.com/yanuaraditia))
 
-
 ## 1.3.2
 
 [compare changes](https://github.com/kiriminaja/php/compare/1.3.1...1.3.2)
@@ -43,7 +63,6 @@
 ### ❤️ Contributors
 
 - Yanuar Aditia ([@yanuaraditia](https://github.com/yanuaraditia))
-
 
 ## 1.3.1
 
@@ -64,7 +83,6 @@
 ### ❤️ Contributors
 
 - Yanuar Aditia ([@yanuaraditia](https://github.com/yanuaraditia))
-
 
 ## 1.3.0
 
@@ -98,7 +116,6 @@
 - muhadifff ([@muhadifff](https://github.com/muhadifff))
 - Toto ([@totoprayogo1916](https://github.com/totoprayogo1916))
 
-
 ## 1.2.5
 
 [compare changes](https://github.com/kiriminaja/php/compare/1.2.4...1.2.5)
@@ -110,7 +127,6 @@
 ### ❤️ Contributors
 
 - yanuar ([@yanuaraditia](https://github.com/yanuaraditia))
-
 
 ## 1.2.4
 
@@ -129,7 +145,6 @@
 - yanuar ([@yanuaraditia](https://github.com/yanuaraditia))
 - Nabil Izzullah ([@nabilizzul](https://github.com/nabilizzul))
 
-
 ## 1.2.3
 
 [compare changes](https://github.com/kiriminaja/php/compare/1.2.2...1.2.3)
@@ -145,7 +160,6 @@
 
 - yanuar ([@yanuaraditia](https://github.com/yanuaraditia))
 - Yanuar Aditia ([@yanuaraditia](https://github.com/yanuaraditia))
-
 
 ## 1.2.2
 
@@ -163,7 +177,6 @@
 
 - yanuar ([@yanuaraditia](https://github.com/yanuaraditia))
 
-
 ## 1.2.0
 
 [compare changes](https://github.com/kiriminaja/php/compare/1.1.0...1.2.0)
@@ -178,7 +191,6 @@
 ### ❤️ Contributors
 
 - yanuar ([@yanuaraditia](https://github.com/yanuaraditia))
-
 
 ## 1.1.0
 
@@ -206,7 +218,6 @@
 - dipaferdian ([@dipaferdian](https://github.com/dipaferdian))
 - nug1e ([@nug1e](https://github.com/nug1e))
 - Yanuar Aditia ([@yanuaraditia](https://github.com/yanuaraditia))
-
 
 ## 1.0.7
 
@@ -251,7 +262,6 @@
 - Daewu Bintara ([@daewu14](https://github.com/daewu14))
 - Yanuar Aditia ([@yanuaraditia](https://github.com/yanuaraditia))
 
-
 ## 1.0.2-beta
 
 ### Other Changes
@@ -263,4 +273,3 @@
 ### ❤️ Contributors
 
 - Daewu ([@daewu14](https://github.com/daewu14))
-
