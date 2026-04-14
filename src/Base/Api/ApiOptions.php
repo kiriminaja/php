@@ -96,7 +96,7 @@ trait ApiOptions
     {
         $this->method = $method;
         try {
-            $request = self::client()->request($this->method, self::url($endpoint), $this->dataOption($data));
+            $request = self::client()->request($this->method, $this->url($endpoint), $this->dataOption($data));
             return [true, json_decode($request->getBody()->getContents(), true)];
         } catch (\Throwable|GuzzleException $e) {
             return [false, $e->getMessage()];
@@ -121,7 +121,7 @@ trait ApiOptions
             if ($query) {
                 $options['query'] = $query;
             }
-            $request = self::client()->request($this->method, self::url($endpoint), $options);
+            $request = self::client()->request($this->method, $this->url($endpoint), $options);
             return [true, json_decode($request->getBody()->getContents(), true)];
         } catch (\Throwable|GuzzleException $e) {
             return [false, $e->getMessage()];

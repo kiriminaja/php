@@ -38,11 +38,14 @@ class PriceInstantService extends ServiceBase
 
         try {
             [$status, $data] = $this->shippingInstantRepository->price($this->data);
-            if ($status && $data['status']) {
-                return self::success($data['result'], $data['text']);
+            if (!is_array($data)) {
+                return self::error(null, 'Unexpected response');
+            }
+            if ($status && isset($data['status']) && $data['status']) {
+                return self::success($data['result'] ?? $data, $data['text'] ?? 'loaded');
             }
             if (isset($data['status']) && !$data['status']) {
-                return self::error(null, $data['text']);
+                return self::error(null, $data['text'] ?? 'Unknown error');
             }
             return self::error(null, json_encode($data));
         } catch (\Throwable $th) {

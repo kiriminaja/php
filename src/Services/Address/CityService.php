@@ -42,7 +42,8 @@ class CityService extends ServiceBase
     public function call(): ServiceResponse
     {
         // Validate province_id
-        if ($this->validation()->fails()) return self::error(null, $this->validation()->errors()[0]);
+        $validation = $this->validation();
+        if ($validation->fails()) return self::error(null, $validation->errors()[0]);
 
         try {
             [$status, $data] = $this->addressRepository->cities($this->provinceID);

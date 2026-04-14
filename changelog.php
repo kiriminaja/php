@@ -58,7 +58,7 @@ foreach ($tags as $tag) {
     $prev = $tag;
 }
 // Add unreleased range (from latest tag to HEAD)
-$ranges[] = [$prev, 'HEAD', "v{$currentVersion}"];
+$ranges[] = [$prev, 'HEAD', $currentVersion];
 
 // Reverse so newest is first
 $ranges = array_reverse($ranges);
