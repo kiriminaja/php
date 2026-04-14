@@ -19,18 +19,18 @@ The server starts at `http://localhost:3000`. Visit `/` to see all available rou
 
 ## Available Routes
 
-| Route                              | Description                 |
-| ---------------------------------- | --------------------------- |
-| `GET /`                            | List all routes             |
-| `GET /provinces`                   | List all provinces          |
-| `GET /cities/:province_id`         | Cities in a province        |
-| `GET /districts/:city_id`          | Districts in a city         |
-| `GET /sub-districts/:district_id`  | Sub-districts in a district |
-| `GET /districts-by-name/:search`   | Search districts by name    |
-| `GET /couriers`                    | List available couriers     |
-| `GET /couriers/group`              | Courier groups              |
-| `GET /couriers/:code`              | Courier detail              |
-| `GET /schedules`                   | Pickup schedules            |
-| `GET /tracking/:order_id`          | Track express order         |
-| `GET /instant/tracking/:order_id`  | Track instant order         |
-| `GET /payment/:payment_id`         | Get payment details         |
+| Route                             | Description                 |
+| --------------------------------- | --------------------------- |
+| `GET /`                           | List all routes             |
+| `GET /provinces`                  | List all provinces          |
+| `GET /cities/:province_id`        | Cities in a province        |
+| `GET /districts/:city_id`         | Districts in a city         |
+| `GET /sub-districts/:district_id` | Sub-districts in a district |
+| `GET /districts-by-name/:search`  | Search districts by name    |
+| `GET /couriers`                   | List available couriers     |
+| `GET /couriers/group`             | Courier groups              |
+| `GET /couriers/:code`             | Courier detail              |
+| `GET /schedules`                  | Pickup schedules            |
+| `GET /tracking/:order_id`         | Track express order         |
+| `GET /instant/tracking/:order_id` | Track instant order         |
+| `GET /payment/:payment_id`        | Get payment details         |
