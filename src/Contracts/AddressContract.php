@@ -21,6 +21,12 @@ interface AddressContract {
     public function districts(int $cityId);
 
     /**
+     * @param int $districtId
+     * @return mixed
+     */
+    public function subDistricts(int $districtId);
+
+    /**
      * @param string $name
      * @return mixed
      */

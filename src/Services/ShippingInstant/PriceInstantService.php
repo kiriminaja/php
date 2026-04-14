@@ -27,12 +27,8 @@ class PriceInstantService extends ServiceBase
     public function call(): ServiceResponse
     {
         if (
-            is_null($this->data->origin_lat) ||
-            is_null($this->data->origin_long) ||
-            is_null($this->data->origin_address) ||
-            is_null($this->data->destination_lat) ||
-            is_null($this->data->destination_long) ||
-            is_null($this->data->destination_address) ||
+            !isset($this->data->origin) ||
+            !isset($this->data->destination) ||
             !is_int($this->data->item_price) ||
             !is_int($this->data->weight) ||
             !is_array($this->data->service)

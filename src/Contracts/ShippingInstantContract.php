@@ -36,4 +36,10 @@ interface ShippingInstantContract
      * @return array
      */
     public function cancel(string $orderId): array;
+
+    /**
+     * @param string $orderId
+     * @return array
+     */
+    public function tracking(string $orderId): array;
 }

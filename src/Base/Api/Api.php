@@ -36,6 +36,17 @@ class Api implements ServiceClientContract {
     }
 
     /**
+     * POST request with query parameters (no JSON body).
+     *
+     * @param string $endPoint
+     * @param array|null $query
+     * @return array
+     */
+    public function postWithQuery(string $endPoint, ?array $query = null): array {
+        return $this->requestWithQuery('POST', $endPoint, $query);
+    }
+
+    /**
      * @param string $endPoint
      * @param $data
      * @return array

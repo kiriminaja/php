@@ -9,8 +9,8 @@ class RequestPickupInstantData extends ModelBase implements WithMappedData
 {
     public string $service;
     public string $service_type;
-    public ?string $insurance_type = null;
-    public string $vehicle_name;
+    public string $vehicle;
+    public string $order_prefix;
     public array $packages = [];
 
     /**
@@ -18,11 +18,6 @@ class RequestPickupInstantData extends ModelBase implements WithMappedData
      */
     public function getMapped(): array
     {
-        $data = $this->toArray();
-        $data['vehicle'] = [
-            'name' => $this->vehicle_name
-        ];
-        unset($data['vehicle_name']);
-        return $data;
+        return $this->toArray();
     }
 }

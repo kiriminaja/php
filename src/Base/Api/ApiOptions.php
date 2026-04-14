@@ -46,21 +46,6 @@ trait ApiOptions
     }
 
     /**
-     * Getter base url [INSTANT]
-     *
-     * @return string
-     * @throws Exception
-     */
-    private static function baseURLInstant(): string
-    {
-        return match (KiriminAjaConfig::mode()->getMode()) {
-            Mode::Staging => "https://apieks-staging.kiriminaja.com/",
-            Mode::Production => "https://api.kiriminaja.com/",
-            default => throw new Exception("Unknown mode"),
-        };
-    }
-
-    /**
      * Getter headers
      *
      * @return string[]
@@ -103,7 +88,7 @@ trait ApiOptions
      */
     protected function url($endpoint): string
     {
-        return ($this->isUseInstant() ? self::baseURLInstant() : self::baseURL()) . $endpoint;
+        return self::baseURL() . $endpoint;
     }
 
     /**
@@ -129,6 +114,31 @@ trait ApiOptions
         $this->method = $method;
         try {
             $request = self::client()->request($this->method, self::url($endpoint), $this->dataOption($data));
+            return [true, json_decode($request->getBody()->getContents(), true)];
+        } catch (\Throwable|GuzzleException $e) {
+            return [false, $e->getMessage()];
+        }
+    }
+
+    /**
+     * Request with query parameters (no body).
+     *
+     * @param string $method
+     * @param string $endpoint
+     * @param array|null $query
+     * @return array
+     */
+    protected function requestWithQuery(string $method, string $endpoint, ?array $query = null): array
+    {
+        $this->method = $method;
+        try {
+            $options = [
+                'headers' => self::getHeaders(),
+            ];
+            if ($query) {
+                $options['query'] = $query;
+            }
+            $request = self::client()->request($this->method, self::url($endpoint), $options);
             return [true, json_decode($request->getBody()->getContents(), true)];
         } catch (\Throwable|GuzzleException $e) {
             return [false, $e->getMessage()];

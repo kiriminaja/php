@@ -17,27 +17,7 @@ class ShippingInstantRepository implements ShippingInstantContract
      */
     public function price(ShippingPriceInstantData $shippingPriceInstantData): array
     {
-        $data = $shippingPriceInstantData;
-        $payload = [
-            'service' => $data->service,
-            'origin' => [
-                'long' => $data->origin_long,
-                'lat' => $data->origin_lat,
-                'address' => $data->origin_address
-            ],
-            'destination' => [
-                'long' => $data->destination_long,
-                'lat' => $data->destination_lat,
-                'address' => $data->destination_address
-            ],
-            'vehicle' => [
-                'name' => $data->vehicle_name
-            ],
-            'item_price' => $data->item_price,
-            'weight' => $data->weight
-        ];
-
-        return self::api(true)->post('open-api/v1/instants/price', $payload);
+        return self::api()->post('api/mitra/v4/instant/pricing', $shippingPriceInstantData->toArray());
     }
 
     /**
@@ -46,7 +26,7 @@ class ShippingInstantRepository implements ShippingInstantContract
      */
     public function findNewDriver(string $orderId): array
     {
-        return self::api(true)->post('open-api/v1/instants/find-new-driver',[
+        return self::api()->post('api/mitra/v4/instant/pickup/find-new-driver', [
             "order_id" => $orderId
         ]);
     }
@@ -57,7 +37,7 @@ class ShippingInstantRepository implements ShippingInstantContract
      */
     public function getPayment(string $paymentId): array
     {
-        return self::api(true)->get("open-api/v1/instants/payment/{$paymentId}");
+        return self::api()->post('api/mitra/v2/get_payment', ['payment_id' => $paymentId]);
     }
 
     /**
@@ -66,7 +46,7 @@ class ShippingInstantRepository implements ShippingInstantContract
      */
     public function create(RequestPickupInstantData $requestPickupInstantData): array
     {
-        return self::api(true)->post('open-api/v1/instants',$requestPickupInstantData->getMapped());
+        return self::api()->post('api/mitra/v4/instant/pickup/request', $requestPickupInstantData->getMapped());
     }
 
     /**
@@ -75,6 +55,15 @@ class ShippingInstantRepository implements ShippingInstantContract
      */
     public function cancel(string $orderId): array
     {
-        return self::api(true)->delete("open-api/v1/instants/{$orderId}");
+        return self::api()->delete("api/mitra/v4/instant/pickup/void/{$orderId}");
+    }
+
+    /**
+     * @param string $orderId
+     * @return array
+     */
+    public function tracking(string $orderId): array
+    {
+        return self::api()->get("api/mitra/v4/instant/tracking/{$orderId}");
     }
 }
