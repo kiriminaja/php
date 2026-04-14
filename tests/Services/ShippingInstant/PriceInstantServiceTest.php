@@ -26,13 +26,12 @@ class PriceInstantServiceTest extends TestCase
 
         $payload = (new ShippingPriceInstantData());
         $payload->weight = 1000;
-        $payload->origin_address = "BOKO";
-        $payload->origin_long = 1.00;
-        $payload->origin_lat = 1.00;
-        $payload->destination_address = "BOKO";
-        $payload->destination_long = 1.00;
-        $payload->destination_lat = 1.00;
+        $payload->origin = ['lat' => -6.175, 'long' => 106.827, 'address' => 'Jakarta'];
+        $payload->destination = ['lat' => -6.200, 'long' => 106.816, 'address' => 'Kebayoran'];
         $payload->item_price = 1000;
+        $payload->service = ['grab_express'];
+        $payload->vehicle = 'motor';
+        $payload->timezone = 'Asia/Jakarta';
 
         $call = KiriminAja::getPriceInstant($payload);
 

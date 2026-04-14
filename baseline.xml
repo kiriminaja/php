@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<files version="1">
+ <file path="vendor/rakit/validation/src/Attribute.php">
+  <line number="214" hash="16b5c0b492c1054c11305b2ef596e7cc2f4ff1c2">
+   <issue><![CDATA[Rakit\Validation\Attribute::getValue(): Implicitly marking parameter $key as nullable is deprecated, the explicit nullable type must be used instead]]></issue>
+  </line>
+ </file>
+ <file path="vendor/rakit/validation/src/Helper.php">
+  <line number="222" hash="827335ee689f68d8459ef3fc39acffc453590b57">
+   <issue><![CDATA[Rakit\Validation\Helper::join(): Implicitly marking parameter $lastSeparator as nullable is deprecated, the explicit nullable type must be used instead]]></issue>
+  </line>
+  <line number="248" hash="59336adc8d3b055c5a8b355395cf38e87b0fc675">
+   <issue><![CDATA[Rakit\Validation\Helper::wraps(): Implicitly marking parameter $suffix as nullable is deprecated, the explicit nullable type must be used instead]]></issue>
+  </line>
+ </file>
+</files>

@@ -25,7 +25,8 @@ class ProvinceServiceFailedTest extends TestCase
                 'provinces' => [
                     false,
                     [
-                        'status' => false
+                        'status' => false,
+                        'text'   => 'Failed to fetch provinces'
                     ]
                 ]
             ]);

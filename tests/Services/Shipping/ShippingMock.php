@@ -3,9 +3,8 @@
 namespace KiriminAja\Services\Shipping;
 
 use KiriminAja\Repositories\ShippingRepository;
-use PHPUnit\Framework\TestCase;
 
-class ShippingMock extends TestCase
+class ShippingMock
 {
     protected \Mockery\MockInterface|\Mockery\LegacyMockInterface|null $mockery = null;
     public function shippingMock()

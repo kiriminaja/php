@@ -3,9 +3,8 @@
 namespace KiriminAja\Services\Address;
 
 use KiriminAja\Repositories\AddressRepository;
-use PHPUnit\Framework\TestCase;
 
-class AddressMock extends TestCase
+class AddressMock
 {
     public function addressMock()
     {
