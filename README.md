@@ -8,7 +8,7 @@ Official PHP SDK for the [KiriminAja](https://kiriminaja.com) logistics API.
 
 ## Requirements
 
-- PHP 8.0+
+- PHP 8.1+
 - ext-json
 
 ## Installation
