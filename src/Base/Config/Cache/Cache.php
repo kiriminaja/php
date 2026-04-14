@@ -7,7 +7,7 @@ class Cache
     /**
      * Default folder name under the OS temp directory.
         */
-    private const string DEFAULT_CACHE_SUBFOLDER = 'kiriminaja-temp-cache';
+    private const DEFAULT_CACHE_SUBFOLDER = 'kiriminaja-temp-cache';
 
     /**
      * Custom cache directory (must be writable). When null, falls back to sys_get_temp_dir().
