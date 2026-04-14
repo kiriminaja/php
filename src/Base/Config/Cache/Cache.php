@@ -4,7 +4,6 @@ namespace KiriminAja\Base\Config\Cache;
 
 class Cache
 {
-    private const int TIME_1_WEEK = 604800;
     /**
      * Default folder name under the OS temp directory.
         */
@@ -73,7 +72,7 @@ class Cache
      * @param int $expiry
      * @return void
      */
-    public static function setCache($key, $value, int $expiry = self::TIME_1_WEEK): void
+    public static function setCache($key, $value, int $expiry = 604800): void
     {
         self::put($key, $value, $expiry);
     }
