@@ -1,9 +1,9 @@
 # Changelog
 
 
-## v1.3.4
+## 1.3.4
 
-[compare changes](https://github.com/kiriminaja/php/compare/1.3.2...v1.3.4)
+[compare changes](https://github.com/kiriminaja/php/compare/1.3.2...1.3.4)
 
 ### 🚀 Enhancements
 
@@ -24,6 +24,7 @@
 
 ### 🏡 Chore
 
+- V1.3.4 ([326d66e](https://github.com/kiriminaja/php/commit/326d66e))
 - Remove phpunit.xml.bak from repository and update .gitignore ([a426803](https://github.com/kiriminaja/php/commit/a426803))
 
 ### ❤️ Contributors
