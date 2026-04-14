@@ -1,12 +1,14 @@
 # Changelog
 
 
-## v1.3.3
+## v1.3.4
 
-[compare changes](https://github.com/kiriminaja/php/compare/1.3.2...v1.3.3)
+[compare changes](https://github.com/kiriminaja/php/compare/1.3.2...v1.3.4)
 
 ### 🚀 Enhancements
 
+- Update minimum php version to 8.1 since 8.0 eol at 2023 ([d4aca76](https://github.com/kiriminaja/php/commit/d4aca76))
+- Implement release chain config ([4db758b](https://github.com/kiriminaja/php/commit/4db758b))
 - Enhance README with new service methods and examples ([b079ac4](https://github.com/kiriminaja/php/commit/b079ac4))
 - Implement test case coverage on all new services ([2c5dd42](https://github.com/kiriminaja/php/commit/2c5dd42))
 - Update api to latest coverage version ([0af9283](https://github.com/kiriminaja/php/commit/0af9283))
@@ -26,7 +28,7 @@
 
 ### ❤️ Contributors
 
-- Yanuar Aditia ([@ngalor](https://github.com/ngalor))
+- Yanuar Aditia ([@yanuaraditia](https://github.com/yanuaraditia))
 
 
 ## 1.3.2
@@ -39,7 +41,7 @@
 
 ### ❤️ Contributors
 
-- Yanuar Aditia ([@ngalor](https://github.com/ngalor))
+- Yanuar Aditia ([@yanuaraditia](https://github.com/yanuaraditia))
 
 
 ## 1.3.1
@@ -60,7 +62,7 @@
 
 ### ❤️ Contributors
 
-- Yanuar Aditia ([@ngalor](https://github.com/ngalor))
+- Yanuar Aditia ([@yanuaraditia](https://github.com/yanuaraditia))
 
 
 ## 1.3.0
@@ -91,7 +93,7 @@
 
 ### ❤️ Contributors
 
-- Yanuar ([@ngalor](https://github.com/ngalor))
+- Yanuar ([@yanuaraditia](https://github.com/yanuaraditia))
 - muhadifff ([@muhadifff](https://github.com/muhadifff))
 - Toto ([@totoprayogo1916](https://github.com/totoprayogo1916))
 
@@ -106,7 +108,7 @@
 
 ### ❤️ Contributors
 
-- yanuar ([@ngalor](https://github.com/ngalor))
+- yanuar ([@yanuaraditia](https://github.com/yanuaraditia))
 
 
 ## 1.2.4
@@ -123,7 +125,7 @@
 
 ### ❤️ Contributors
 
-- yanuar ([@ngalor](https://github.com/ngalor))
+- yanuar ([@yanuaraditia](https://github.com/yanuaraditia))
 - Nabil Izzullah ([@nabilizzul](https://github.com/nabilizzul))
 
 
@@ -140,8 +142,8 @@
 
 ### ❤️ Contributors
 
-- yanuar ([@ngalor](https://github.com/ngalor))
-- Yanuar Aditia ([@ngalor](https://github.com/ngalor))
+- yanuar ([@yanuaraditia](https://github.com/yanuaraditia))
+- Yanuar Aditia ([@yanuaraditia](https://github.com/yanuaraditia))
 
 
 ## 1.2.2
@@ -158,7 +160,7 @@
 
 ### ❤️ Contributors
 
-- yanuar ([@ngalor](https://github.com/ngalor))
+- yanuar ([@yanuaraditia](https://github.com/yanuaraditia))
 
 
 ## 1.2.0
@@ -174,7 +176,7 @@
 
 ### ❤️ Contributors
 
-- yanuar ([@ngalor](https://github.com/ngalor))
+- yanuar ([@yanuaraditia](https://github.com/yanuaraditia))
 
 
 ## 1.1.0
@@ -199,10 +201,10 @@
 
 ### ❤️ Contributors
 
-- yanuar ([@ngalor](https://github.com/ngalor))
+- yanuar ([@yanuaraditia](https://github.com/yanuaraditia))
 - dipaferdian ([@dipaferdian](https://github.com/dipaferdian))
 - nug1e ([@nug1e](https://github.com/nug1e))
-- Yanuar Aditia ([@ngalor](https://github.com/ngalor))
+- Yanuar Aditia ([@yanuaraditia](https://github.com/yanuaraditia))
 
 
 ## 1.0.7
@@ -242,11 +244,11 @@
 ### ❤️ Contributors
 
 - Daewu ([@daewu14](https://github.com/daewu14))
-- yanuar ([@ngalor](https://github.com/ngalor))
+- yanuar ([@yanuaraditia](https://github.com/yanuaraditia))
 - dipaferdian ([@dipaferdian](https://github.com/dipaferdian))
 - anggy ([@anggyprat](https://github.com/anggyprat))
 - Daewu Bintara ([@daewu14](https://github.com/daewu14))
-- Yanuar Aditia ([@ngalor](https://github.com/ngalor))
+- Yanuar Aditia ([@yanuaraditia](https://github.com/yanuaraditia))
 
 
 ## 1.0.2-beta
