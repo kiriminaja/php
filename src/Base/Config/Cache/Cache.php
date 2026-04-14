@@ -4,16 +4,11 @@ namespace KiriminAja\Base\Config\Cache;
 
 class Cache
 {
-    const TIME_5_MIN = 300;
-    const TIME_HALF_HOUR = 1800;
-    const TIME_1_HOUR = 3600;
-    const TIME_12_HOUR = 43200;
-    const TIME_1_DAY = 86400;
-    const TIME_1_WEEK = 604800;
+    private const int TIME_1_WEEK = 604800;
     /**
      * Default folder name under the OS temp directory.
-     */
-    private const DEFAULT_CACHE_SUBFOLDER = 'kiriminaja-temp-cache';
+        */
+    private const string DEFAULT_CACHE_SUBFOLDER = 'kiriminaja-temp-cache';
 
     /**
      * Custom cache directory (must be writable). When null, falls back to sys_get_temp_dir().
@@ -75,11 +70,12 @@ class Cache
      *
      * @param $key
      * @param $value
+     * @param int $expiry
      * @return void
      */
-    public static function setCache($key, $value): void
+    public static function setCache($key, $value, int $expiry = self::TIME_1_WEEK): void
     {
-        self::put($key, $value, self::TIME_1_WEEK);
+        self::put($key, $value, $expiry);
     }
 
     /**

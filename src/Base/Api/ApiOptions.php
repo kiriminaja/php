@@ -21,6 +21,11 @@ trait ApiOptions
      */
     private static function baseURL(): string
     {
+        $customBaseUrl = KiriminAjaConfig::baseUrl()->getBaseUrl();
+        if ($customBaseUrl) {
+            return rtrim($customBaseUrl, '/') . '/';
+        }
+
         return match (KiriminAjaConfig::mode()->getMode()) {
             Mode::Staging => "https://tdev.kiriminaja.com/",
             Mode::Production => "https://client.kiriminaja.com/",

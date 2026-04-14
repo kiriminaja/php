@@ -4,6 +4,7 @@ namespace KiriminAja\Base\Config;
 
 use KiriminAja\Base\Config\Cache\Cache;
 use KiriminAja\Base\Config\Cache\_CacheApiKey;
+use KiriminAja\Base\Config\Cache\_CacheBaseUrl;
 use KiriminAja\Base\Config\Cache\_CacheMode;
 use KiriminAja\Base\Config\Cache\_ModeApiKey;
 
@@ -77,5 +78,26 @@ class KiriminAjaConfig {
      */
     public static function apiKey(): _CacheApiKey {
         return self::modeApiKey()->apiKey();
+    }
+
+    /**
+     * Setter base url
+     *
+     * @param string $baseUrl
+     * @return KiriminAjaConfig
+     * @throws \Exception
+     */
+    public static function setBaseUrl(string $baseUrl): KiriminAjaConfig {
+        self::modeApiKey()->baseUrl()->setBaseUrl($baseUrl);
+        return new static();
+    }
+
+    /**
+     * Getter base url
+     *
+     * @return _CacheBaseUrl
+     */
+    public static function baseUrl(): _CacheBaseUrl {
+        return self::modeApiKey()->baseUrl();
     }
 }

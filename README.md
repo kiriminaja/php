@@ -42,6 +42,7 @@ $provinces = KiriminAja::getProvince();
 | -------------------------------------------- | ------------------------------------------------------- |
 | `KiriminAjaConfig::setMode($mode)`           | `Mode::Staging` or `Mode::Production`                   |
 | `KiriminAjaConfig::setApiTokenKey($key)`     | Your KiriminAja API key                                 |
+| `KiriminAjaConfig::setBaseUrl($url)`         | Custom base URL (useful for proxy or self-hosted)       |
 | `KiriminAjaConfig::setCacheDirectory($path)` | Custom cache directory (useful if /tmp is not writable) |
 | `KiriminAjaConfig::disableCache()`           | Disable file-based caching entirely                     |
 
@@ -53,6 +54,16 @@ KiriminAjaConfig::setCacheDirectory(__DIR__ . '/kiriminaja-cache');
 KiriminAjaConfig::disableCache();
 
 KiriminAjaConfig::setMode(Mode::Production)::setApiTokenKey('YOUR_API_KEY');
+```
+
+### Custom Base URL
+
+If you need to route requests through a proxy or custom endpoint, set a custom base URL. This overrides the default URL resolved from the mode.
+
+```php
+KiriminAjaConfig::setMode(Mode::Production)
+    ::setApiTokenKey('YOUR_API_KEY')
+    ::setBaseUrl('https://proxy.example.com');
 ```
 
 ---
