@@ -1,0 +1,16 @@
+{
+    "name": "kiriminaja/playground",
+    "description": "KiriminAja PHP SDK - Playground",
+    "type": "project",
+    "require": {
+        "kiriminaja/kiriminaja-php": "@dev"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
