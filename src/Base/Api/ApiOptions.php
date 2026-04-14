@@ -12,23 +12,6 @@ trait ApiOptions
 {
 
     private string $method;
-    private bool $useInstant = false;
-
-    /**
-     * @return bool
-     */
-    public function isUseInstant(): bool
-    {
-        return $this->useInstant;
-    }
-
-    /**
-     * @param bool $useInstant
-     */
-    public function setUseInstant(bool $useInstant): void
-    {
-        $this->useInstant = $useInstant;
-    }
 
     /**
      * Getter base url

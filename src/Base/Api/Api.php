@@ -10,14 +10,6 @@ class Api implements ServiceClientContract {
     use ApiOptions;
 
     /**
-     * @param bool $useInstant
-     */
-    public function __construct(bool $useInstant = false)
-    {
-        $this->setUseInstant($useInstant);
-    }
-
-    /**
      * @param string $endPoint
      * @param $data
      * @return array
