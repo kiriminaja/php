@@ -271,4 +271,5 @@ For any requests, bugs, or comments, please open an [issue](https://github.com/k
 ```bash
 composer install           # install dependencies
 vendor/bin/phpunit tests   # run tests
+# or `make test`
 ```
