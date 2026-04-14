@@ -27,7 +27,7 @@
         "php": ">=8.0",
         "guzzlehttp/guzzle": ">=6.0",
         "ext-json": "*",
-        "rakit/validation": "^1.4"
+        "blakvghost/php-validator": "^2.3"
     },
     "autoload": {
         "psr-4": {

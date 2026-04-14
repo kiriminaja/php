@@ -5,7 +5,6 @@ namespace KiriminAja\Services\Address;
 use KiriminAja\Base\ServiceBase;
 use KiriminAja\Repositories\AddressRepository;
 use KiriminAja\Responses\ServiceResponse;
-use KiriminAja\Utils\Validator;
 
 class DistrictByNameService extends ServiceBase
 {
