@@ -21,7 +21,7 @@ class LaravelCacheStore implements CacheStoreContract
         return $this->cache->get($this->prefix . $key);
     }
 
-    public function put(string $key, string $value, int $expiry): bool
+    public function put(string $key, mixed $value, int $expiry): bool
     {
         return $this->cache->put($this->prefix . $key, $value, $expiry);
     }

@@ -52,7 +52,7 @@ class FileCacheStore implements CacheStoreContract
             return null;
         }
 
-        return unserialize($json_content->value);
+        return unserialize($json_content->value, ['allowed_classes' => false]);
     }
 
     public function put(string $key, string $value, int $expiry): bool

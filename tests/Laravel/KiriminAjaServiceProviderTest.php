@@ -1,9 +1,8 @@
 <?php
 
-namespace KiriminAja\Laravel;
-
 require_once __DIR__ . '/helpers.php';
 
+namespace KiriminAja\Laravel;
 use Illuminate\Config\Repository as ConfigRepository;
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Cache\Repository as CacheRepository;
@@ -130,7 +129,7 @@ class KiriminAjaServiceProviderTest extends TestCase
         $storedKeys = [];
         $cacheMock = Mockery::mock(CacheRepository::class);
         $cacheMock->shouldReceive('put')
-            ->andReturnUsing(function ($key) use (&$storedKeys) {
+            ->andReturnUsing(function ($key, ...$args) use (&$storedKeys) {
                 $storedKeys[] = $key;
                 return true;
             });
