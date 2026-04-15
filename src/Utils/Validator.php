@@ -2,27 +2,22 @@
 
 namespace KiriminAja\Utils;
 
+use BlakvGhost\PHPValidator\Validator as PHPValidator;
+
 class Validator
 {
     /**
      * @param array $inputs
      * @param array $rules
      * @param array $messages
-     * @return \Rakit\Validation\Validation
+     * @return ValidationResult
      */
-    public static function make(array $inputs, array $rules, array $messages = []): \Rakit\Validation\Validation
+    public static function validate(array $inputs, array $rules, array $messages = []): ValidationResult
     {
-        return (new \Rakit\Validation\Validator())->make($inputs, $rules, $messages);
-    }
-
-    /**
-     * @param array $inputs
-     * @param array $rules
-     * @param array $messages
-     * @return \Rakit\Validation\Validation
-     */
-    public static function validate(array $inputs, array $rules, array $messages = []): \Rakit\Validation\Validation
-    {
-        return (new \Rakit\Validation\Validator())->validate($inputs, $rules, $messages);
+        $validator = new PHPValidator($inputs, $rules, $messages);
+        return new ValidationResult(
+            $validator->isValid(),
+            $validator->isValid() ? [] : $validator->getErrors()
+        );
     }
 }

@@ -36,6 +36,12 @@ interface KiriminAjaContract {
     public static function getProvince(): ServiceResponse;
 
     /**
+     * @param int $districtID
+     * @return ServiceResponse
+     */
+    public static function getSubDistrict(int $districtID): ServiceResponse;
+
+    /**
      * @param array $services
      * @return ServiceResponse
      */
@@ -108,5 +114,27 @@ interface KiriminAjaContract {
      * @param string $orderID
      * @return ServiceResponse
      */
+    public static function getTrackingInstant(string $orderID): ServiceResponse;
+
+    /**
+     * @param string $orderID
+     * @return ServiceResponse
+     */
     public static function findNewDriver(string $orderID): ServiceResponse;
+
+    /**
+     * @return ServiceResponse
+     */
+    public static function getCouriers(): ServiceResponse;
+
+    /**
+     * @return ServiceResponse
+     */
+    public static function getCourierGroups(): ServiceResponse;
+
+    /**
+     * @param string $courierCode
+     * @return ServiceResponse
+     */
+    public static function getCourierDetail(string $courierCode): ServiceResponse;
 }

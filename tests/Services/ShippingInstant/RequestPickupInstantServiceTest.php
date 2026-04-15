@@ -35,23 +35,25 @@ class RequestPickupInstantServiceTest extends TestCase
         $package->origin_long = 1.000;
         $package->origin_address = "JO";
         $package->origin_name = "G";
+        $package->origin_phone = "08123456789";
+        $package->origin_address_note = "Near gate";
         $package->destination_lat = 1.000;
         $package->destination_long = 1.000;
         $package->destination_address = "JO";
         $package->destination_name = "G";
+        $package->destination_phone = "08987654321";
+        $package->destination_address_note = "Floor 2";
+        $package->shipping_price = 15000;
         $package->item_price = 10000;
         $package->item_description = "BUKU";
         $package->item_name = "BUKU";
-        $package->item_weight_in_kg = 1;
+        $package->item_weight = 1000;
 
         $pickup = new RequestPickupInstantData();
         $pickup->service = "gosend";
         $pickup->service_type = "sql";
-        $pickup->vehicle_name = "motor";
-        $pickup->insurance_type = "gold";
-
-        $package2 = $package;
-        $package2->destination_name = "GOP";
+        $pickup->vehicle = "motor";
+        $pickup->order_prefix = "DEV";
 
         $call = KiriminAja::requestPickupInstant($pickup, $package);
         self::assertTrue($call->status);
@@ -65,8 +67,8 @@ class RequestPickupInstantServiceTest extends TestCase
         $pickup = new RequestPickupInstantData();
         $pickup->service = "gosend";
         $pickup->service_type = "sql";
-        $pickup->vehicle_name = "motor";
-        $pickup->insurance_type = "gold";
+        $pickup->vehicle = "motor";
+        $pickup->order_prefix = "DEV";
 
         $package = new \stdClass();
 

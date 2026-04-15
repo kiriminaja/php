@@ -69,9 +69,9 @@ class ShippingRepository implements ShippingContract {
      * @return array
      */
     public function cancel(string $awb, string $reason): array {
-        return self::api()->post('api/mitra/v3/cancel_shipment', [
-            "awb"    => $awb,
-            "reason" => $reason
+        return self::api()->postWithQuery('api/mitra/v3/cancel_shipment', [
+            'awb'    => $awb,
+            'reason' => $reason,
         ]);
     }
 

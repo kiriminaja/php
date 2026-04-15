@@ -43,7 +43,7 @@ class RequestPickupInstantService extends ServiceBase
         if (
             is_null($this->data->service) ||
             is_null($this->data->service_type) ||
-            is_null($this->data->vehicle_name) ||
+            is_null($this->data->vehicle) ||
             count($this->data->packages) <= 0
         ) {
             return self::error(null, "Required params can't be blank");

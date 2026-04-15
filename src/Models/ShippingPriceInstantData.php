@@ -7,16 +7,9 @@ use KiriminAja\Base\ModelBase;
 class ShippingPriceInstantData extends ModelBase
 {
     /**
-     * @var array $service
+     * @var array $service List of instant service codes e.g. ['grab_express', 'gosend']
      */
     public array $service = [];
-
-    public float $origin_lat;
-    public float $origin_long;
-    public string $origin_address;
-    public float $destination_lat;
-    public float $destination_long;
-    public string $destination_address;
 
     /**
      * @var int $item_price
@@ -24,9 +17,27 @@ class ShippingPriceInstantData extends ModelBase
     public int $item_price;
 
     /**
-     * @var int $weight
+     * @var array $origin Origin location with keys: lat, long, address
+     */
+    public array $origin;
+
+    /**
+     * @var array $destination Destination location with keys: lat, long, address
+     */
+    public array $destination;
+
+    /**
+     * @var int $weight Weight in grams
      */
     public int $weight;
 
-    public string $vehicle_name = "motor";
+    /**
+     * @var string $vehicle Vehicle type: 'motor' or 'mobil'
+     */
+    public string $vehicle = "motor";
+
+    /**
+     * @var string $timezone Timezone e.g. 'Asia/Jakarta'
+     */
+    public string $timezone = "Asia/Jakarta";
 }

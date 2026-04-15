@@ -4,6 +4,7 @@ namespace KiriminAja\Services\Shipping\PriceService;
 
 require_once(__DIR__.'/../ShippingMock.php');
 
+use KiriminAja\Enums\ExpressService;
 use KiriminAja\Models\ShippingPriceData;
 use KiriminAja\Services\Shipping\PriceService;
 use KiriminAja\Services\Shipping\ShippingMock;
@@ -58,7 +59,7 @@ class PriceServiceSuccessTest extends TestCase
         $shipping_price_object->weight = 1000;
         $shipping_price_object->insurance = 1;
         $shipping_price_object->item_value = 100000;
-        $shipping_price_object->courier = ['jne'];
+        $shipping_price_object->courier = [ExpressService::JNE->value, 'other'];
 
         $result = (new PriceService($shipping_price_object))->call();
 

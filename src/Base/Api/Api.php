@@ -10,14 +10,6 @@ class Api implements ServiceClientContract {
     use ApiOptions;
 
     /**
-     * @param bool $useInstant
-     */
-    public function __construct(bool $useInstant = false)
-    {
-        $this->setUseInstant($useInstant);
-    }
-
-    /**
      * @param string $endPoint
      * @param $data
      * @return array
@@ -33,6 +25,17 @@ class Api implements ServiceClientContract {
      */
     public function post(string $endPoint, $data): array {
         return $this->request('POST', $endPoint, $data);
+    }
+
+    /**
+     * POST request with query parameters (no JSON body).
+     *
+     * @param string $endPoint
+     * @param array|null $query
+     * @return array
+     */
+    public function postWithQuery(string $endPoint, ?array $query = null): array {
+        return $this->requestWithQuery('POST', $endPoint, $query);
     }
 
     /**

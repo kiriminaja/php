@@ -16,6 +16,10 @@ use KiriminAja\Services\Address\CityService;
 use KiriminAja\Services\Address\DistrictByNameService;
 use KiriminAja\Services\Address\DistrictService;
 use KiriminAja\Services\Address\ProvinceService;
+use KiriminAja\Services\Address\SubDistrictService;
+use KiriminAja\Services\Courier\CourierDetailService;
+use KiriminAja\Services\Courier\CourierGroupService;
+use KiriminAja\Services\Courier\CourierListService;
 use KiriminAja\Services\Preference\SetCallbackService;
 use KiriminAja\Services\Preference\SetWhitelistExpeditionService;
 use KiriminAja\Services\Shipping\CancelShippingService;
@@ -30,6 +34,7 @@ use KiriminAja\Services\ShippingInstant\FindNewDriverService;
 use KiriminAja\Services\ShippingInstant\GetPaymentInstantService;
 use KiriminAja\Services\ShippingInstant\PriceInstantService;
 use KiriminAja\Services\ShippingInstant\RequestPickupInstantService;
+use KiriminAja\Services\ShippingInstant\TrackingInstantService;
 
 class KiriminAja implements KiriminAjaContract
 {
@@ -77,6 +82,15 @@ class KiriminAja implements KiriminAjaContract
     public static function getProvince(): ServiceResponse
     {
         return self::call((new ProvinceService()));
+    }
+
+    /**
+     * @param int $districtID
+     * @return ServiceResponse
+     */
+    public static function getSubDistrict(int $districtID): ServiceResponse
+    {
+        return self::call((new SubDistrictService($districtID)));
     }
 
     /**
@@ -193,8 +207,42 @@ class KiriminAja implements KiriminAjaContract
      * @param string $orderID
      * @return ServiceResponse
      */
+    public static function getTrackingInstant(string $orderID): ServiceResponse
+    {
+        return self::call((new TrackingInstantService($orderID)));
+    }
+
+    /**
+     * @param string $orderID
+     * @return ServiceResponse
+     */
     public static function findNewDriver(string $orderID): ServiceResponse
     {
         return self::call((new FindNewDriverService($orderID)));
+    }
+
+    /**
+     * @return ServiceResponse
+     */
+    public static function getCouriers(): ServiceResponse
+    {
+        return self::call((new CourierListService()));
+    }
+
+    /**
+     * @return ServiceResponse
+     */
+    public static function getCourierGroups(): ServiceResponse
+    {
+        return self::call((new CourierGroupService()));
+    }
+
+    /**
+     * @param string $courierCode
+     * @return ServiceResponse
+     */
+    public static function getCourierDetail(string $courierCode): ServiceResponse
+    {
+        return self::call((new CourierDetailService($courierCode)));
     }
 }

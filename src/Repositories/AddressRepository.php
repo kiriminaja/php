@@ -37,6 +37,15 @@ class AddressRepository implements AddressContract
     }
 
     /**
+     * @param int $districtId
+     * @return array
+     */
+    public function subDistricts(int $districtId): array
+    {
+        return self::api()->post('api/mitra/kelurahan', ['kecamatan_id' => $districtId]);
+    }
+
+    /**
      * @param string $name
      * @return array
      */

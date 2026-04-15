@@ -5,6 +5,7 @@ namespace KiriminAja\Services\Address;
 use KiriminAja\Base\ServiceBase;
 use KiriminAja\Repositories\AddressRepository;
 use KiriminAja\Responses\ServiceResponse;
+use KiriminAja\Utils\ValidationResult;
 use KiriminAja\Utils\Validator;
 
 class CityService extends ServiceBase
@@ -22,9 +23,9 @@ class CityService extends ServiceBase
     }
 
     /**
-     * @return \Rakit\Validation\Validation
+     * @return ValidationResult
      */
-    private function validation(): \Rakit\Validation\Validation
+    private function validation(): ValidationResult
     {
         return Validator::validate([
             'province_id' => $this->provinceID
@@ -40,8 +41,9 @@ class CityService extends ServiceBase
      */
     public function call(): ServiceResponse
     {
-        // This validation doesn't work
-        if ($this->validation()->fails()) return self::error(null, $this->validation()->errors()->all()[0]);
+        // Validate province_id
+        $validation = $this->validation();
+        if ($validation->fails()) return self::error(null, $validation->errors()[0]);
 
         try {
             [$status, $data] = $this->addressRepository->cities($this->provinceID);

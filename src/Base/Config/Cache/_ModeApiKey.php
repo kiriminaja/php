@@ -22,4 +22,13 @@ class _ModeApiKey {
         return new _CacheApiKey;
     }
 
+    /**
+     * Getter base url
+     *
+     * @return _CacheBaseUrl
+     */
+    public function baseUrl(): _CacheBaseUrl {
+        return new _CacheBaseUrl;
+    }
+
 }

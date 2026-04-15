@@ -27,12 +27,8 @@ class PriceInstantService extends ServiceBase
     public function call(): ServiceResponse
     {
         if (
-            is_null($this->data->origin_lat) ||
-            is_null($this->data->origin_long) ||
-            is_null($this->data->origin_address) ||
-            is_null($this->data->destination_lat) ||
-            is_null($this->data->destination_long) ||
-            is_null($this->data->destination_address) ||
+            !isset($this->data->origin) ||
+            !isset($this->data->destination) ||
             !is_int($this->data->item_price) ||
             !is_int($this->data->weight) ||
             !is_array($this->data->service)
@@ -42,11 +38,14 @@ class PriceInstantService extends ServiceBase
 
         try {
             [$status, $data] = $this->shippingInstantRepository->price($this->data);
-            if ($status && $data['status']) {
-                return self::success($data['result'], $data['text']);
+            if (!is_array($data)) {
+                return self::error(null, 'Unexpected response');
+            }
+            if ($status && isset($data['status']) && $data['status']) {
+                return self::success($data['result'] ?? $data, $data['text'] ?? 'loaded');
             }
             if (isset($data['status']) && !$data['status']) {
-                return self::error(null, $data['text']);
+                return self::error(null, $data['text'] ?? 'Unknown error');
             }
             return self::error(null, json_encode($data));
         } catch (\Throwable $th) {
