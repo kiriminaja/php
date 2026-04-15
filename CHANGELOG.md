@@ -1,18 +1,57 @@
 # Changelog
 
-## v2.0.0
 
-[compare changes](https://github.com/kiriminaja/php/compare/2.0.0...v2.0.0)
+## 2.1.0
+
+[compare changes](https://github.com/kiriminaja/php/compare/2.0.0...2.1.0)
 
 ### 🚀 Enhancements
 
+- Add Laravel integration with cache store support ([c380a59](https://github.com/kiriminaja/php/commit/c380a59))
+- Remove const since it doesn't supported on older php ([630cf2d](https://github.com/kiriminaja/php/commit/630cf2d))
+- Add support for custom base URL in KiriminAjaConfig ([83d2cbf](https://github.com/kiriminaja/php/commit/83d2cbf))
 - Add ExpressService, InstantService, and InstantVehicle enums ([02bf365](https://github.com/kiriminaja/php/commit/02bf365))
 - Improve readme ([2141837](https://github.com/kiriminaja/php/commit/2141837))
 - Add example project ([0af0bb2](https://github.com/kiriminaja/php/commit/0af0bb2))
 
 ### 🩹 Fixes
 
+- Update config reference for Laravel cache store support ([df17ef9](https://github.com/kiriminaja/php/commit/df17ef9))
+- Backward compability issues ([4b681ad](https://github.com/kiriminaja/php/commit/4b681ad))
+- Rc on pr review ([5ea9ac3](https://github.com/kiriminaja/php/commit/5ea9ac3))
 - Adjust formatting of available routes in README ([27877fe](https://github.com/kiriminaja/php/commit/27877fe))
+
+### 💅 Refactors
+
+- Update cache put method to accept mixed value type and adjust related tests ([23f2d35](https://github.com/kiriminaja/php/commit/23f2d35))
+
+### ✅ Tests
+
+- Update config namespacing ([044b768](https://github.com/kiriminaja/php/commit/044b768))
+- Update tests/Laravel/KiriminAjaServiceProviderTest.php ([be0b1d9](https://github.com/kiriminaja/php/commit/be0b1d9))
+- Update src/Base/Config/Cache/FileCacheStore.php ([002c387](https://github.com/kiriminaja/php/commit/002c387))
+- Update tests/Laravel/helpers.php ([f35a4ad](https://github.com/kiriminaja/php/commit/f35a4ad))
+- Update tests/Laravel/KiriminAjaServiceProviderTest.php ([3987047](https://github.com/kiriminaja/php/commit/3987047))
+
+### 🏡 Chore
+
+- Update changelog for v2.0.0 release ([965ecfe](https://github.com/kiriminaja/php/commit/965ecfe))
+
+### Other Changes
+
+- Update src/Contracts/CacheStoreContract.php ([b3df160](https://github.com/kiriminaja/php/commit/b3df160))
+- Update src/Base/Config/Cache/LaravelCacheStore.php ([4fced52](https://github.com/kiriminaja/php/commit/4fced52))
+- Refactor!: remove useInstant constructor since base-url already support all ([ef60043](https://github.com/kiriminaja/php/commit/ef60043))
+
+### ❤️ Contributors
+
+- Yanuar Aditia ([@yanuaraditia](https://github.com/yanuaraditia))
+- Yanuar ([@yanuaraditia](https://github.com/yanuaraditia))
+
+
+## 2.0.0
+
+[compare changes](https://github.com/kiriminaja/php/compare/1.3.4...2.0.0)
 
 ### 🏡 Chore
 
@@ -22,9 +61,10 @@
 
 - Yanuar Aditia ([@yanuaraditia](https://github.com/yanuaraditia))
 
+
 ## 1.3.4
 
-[compare changes](https://github.com/kiriminaja/php/compare/1.3.2...1.3.4)
+[compare changes](https://github.com/kiriminaja/php/compare/1.3.3...1.3.4)
 
 ### 🚀 Enhancements
 
@@ -33,7 +73,6 @@
 - Enhance README with new service methods and examples ([b079ac4](https://github.com/kiriminaja/php/commit/b079ac4))
 - Implement test case coverage on all new services ([2c5dd42](https://github.com/kiriminaja/php/commit/2c5dd42))
 - Update api to latest coverage version ([0af9283](https://github.com/kiriminaja/php/commit/0af9283))
-- Bump version to 1.3.3 ([8d217a6](https://github.com/kiriminaja/php/commit/8d217a6))
 
 ### 💅 Refactors
 
@@ -52,6 +91,20 @@
 
 - Yanuar Aditia ([@yanuaraditia](https://github.com/yanuaraditia))
 
+
+## 1.3.3
+
+[compare changes](https://github.com/kiriminaja/php/compare/1.3.2...1.3.3)
+
+### 🚀 Enhancements
+
+- Bump version to 1.3.3 ([8d217a6](https://github.com/kiriminaja/php/commit/8d217a6))
+
+### ❤️ Contributors
+
+- Yanuar Aditia ([@yanuaraditia](https://github.com/yanuaraditia))
+
+
 ## 1.3.2
 
 [compare changes](https://github.com/kiriminaja/php/compare/1.3.1...1.3.2)
@@ -63,6 +116,7 @@
 ### ❤️ Contributors
 
 - Yanuar Aditia ([@yanuaraditia](https://github.com/yanuaraditia))
+
 
 ## 1.3.1
 
@@ -83,6 +137,7 @@
 ### ❤️ Contributors
 
 - Yanuar Aditia ([@yanuaraditia](https://github.com/yanuaraditia))
+
 
 ## 1.3.0
 
@@ -116,6 +171,7 @@
 - muhadifff ([@muhadifff](https://github.com/muhadifff))
 - Toto ([@totoprayogo1916](https://github.com/totoprayogo1916))
 
+
 ## 1.2.5
 
 [compare changes](https://github.com/kiriminaja/php/compare/1.2.4...1.2.5)
@@ -127,6 +183,7 @@
 ### ❤️ Contributors
 
 - yanuar ([@yanuaraditia](https://github.com/yanuaraditia))
+
 
 ## 1.2.4
 
@@ -145,6 +202,7 @@
 - yanuar ([@yanuaraditia](https://github.com/yanuaraditia))
 - Nabil Izzullah ([@nabilizzul](https://github.com/nabilizzul))
 
+
 ## 1.2.3
 
 [compare changes](https://github.com/kiriminaja/php/compare/1.2.2...1.2.3)
@@ -160,6 +218,7 @@
 
 - yanuar ([@yanuaraditia](https://github.com/yanuaraditia))
 - Yanuar Aditia ([@yanuaraditia](https://github.com/yanuaraditia))
+
 
 ## 1.2.2
 
@@ -177,6 +236,7 @@
 
 - yanuar ([@yanuaraditia](https://github.com/yanuaraditia))
 
+
 ## 1.2.0
 
 [compare changes](https://github.com/kiriminaja/php/compare/1.1.0...1.2.0)
@@ -191,6 +251,7 @@
 ### ❤️ Contributors
 
 - yanuar ([@yanuaraditia](https://github.com/yanuaraditia))
+
 
 ## 1.1.0
 
@@ -218,6 +279,7 @@
 - dipaferdian ([@dipaferdian](https://github.com/dipaferdian))
 - nug1e ([@nug1e](https://github.com/nug1e))
 - Yanuar Aditia ([@yanuaraditia](https://github.com/yanuaraditia))
+
 
 ## 1.0.7
 
@@ -262,6 +324,7 @@
 - Daewu Bintara ([@daewu14](https://github.com/daewu14))
 - Yanuar Aditia ([@yanuaraditia](https://github.com/yanuaraditia))
 
+
 ## 1.0.2-beta
 
 ### Other Changes
@@ -273,3 +336,4 @@
 ### ❤️ Contributors
 
 - Daewu ([@daewu14](https://github.com/daewu14))
+
