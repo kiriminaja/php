@@ -42,7 +42,22 @@
         }
     },
     "require-dev": {
+        "illuminate/config": "^10.0||^11.0||^12.0",
+        "illuminate/container": "^10.0||^11.0||^12.0",
+        "illuminate/contracts": "^10.0||^11.0||^12.0",
+        "illuminate/support": "^10.0||^11.0||^12.0",
         "mockery/mockery": "^1.6",
         "phpunit/phpunit": "^10.5||^11.0"
+    },
+    "suggest": {
+        "illuminate/contracts": "Required for Laravel cache store integration",
+        "illuminate/support": "Required for Laravel service provider integration"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "KiriminAja\\Laravel\\KiriminAjaServiceProvider"
+            ]
+        }
     }
 }

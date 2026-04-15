@@ -68,6 +68,49 @@ KiriminAjaConfig::setMode(Mode::Production)
 
 ---
 
+## Laravel Integration
+
+The SDK auto-registers via Laravel package discovery — no manual provider registration needed.
+
+### 1. Add to `config/services.php`
+
+```php
+'kiriminaja' => [
+    'mode' => env('KIRIMINAJA_MODE', 'staging'),
+    'api_key' => env('KIRIMINAJA_API_KEY', ''),
+    'base_url' => env('KIRIMINAJA_BASE_URL'),
+    'cache_store' => env('KIRIMINAJA_CACHE_STORE', 'laravel'),
+    'cache_prefix' => env('KIRIMINAJA_CACHE_PREFIX', 'kiriminaja:'),
+],
+```
+
+### 2. Add to your `.env`
+
+```env
+KIRIMINAJA_MODE=staging
+KIRIMINAJA_API_KEY=your-api-key-here
+```
+
+### 3. Use the SDK anywhere
+
+```php
+use KiriminAja\Services\KiriminAja;
+
+$provinces = KiriminAja::getProvince();
+```
+
+### Config Reference (`services.kiriminaja`)
+
+| Key            | Env Variable              | Default       | Description                                          |
+| -------------- | ------------------------- | ------------- | ---------------------------------------------------- |
+| `mode`         | `KIRIMINAJA_MODE`         | `staging`     | `staging` or `production`                            |
+| `api_key`      | `KIRIMINAJA_API_KEY`      | `""`          | Your KiriminAja API key                              |
+| `base_url`     | `KIRIMINAJA_BASE_URL`     | `null`        | Custom base URL (overrides mode-based URL)           |
+| `cache_store`  | `KIRIMINAJA_CACHE_STORE`  | `laravel`     | `laravel` (uses Laravel Cache) or `file` (file-based)|
+| `cache_prefix` | `KIRIMINAJA_CACHE_PREFIX` | `kiriminaja:` | Cache key prefix (Laravel store only)                |
+
+---
+
 ## Services
 
 ### Address
