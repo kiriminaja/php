@@ -55,7 +55,7 @@ class FileCacheStore implements CacheStoreContract
         return unserialize($json_content->value, ['allowed_classes' => false]);
     }
 
-    public function put(string $key, string $value, int $expiry): bool
+    public function put(string $key, mixed $value, int $expiry): bool
     {
         if (!$this->prepare()) {
             return false;
@@ -116,7 +116,6 @@ class FileCacheStore implements CacheStoreContract
         if ($this->prepared) {
             return true;
         }
-        $this->prepared = true;
 
         $directory = $this->resolveCacheDirectory();
 
@@ -130,6 +129,7 @@ class FileCacheStore implements CacheStoreContract
             return false;
         }
 
+        $this->prepared = true;
         return true;
     }
 

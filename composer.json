@@ -39,7 +39,10 @@
             "KiriminAja\\": [
                 "tests/"
             ]
-        }
+        },
+        "files": [
+            "tests/Laravel/helpers.php"
+        ]
     },
     "require-dev": {
         "illuminate/config": "^10.0||^11.0||^12.0",

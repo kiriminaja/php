@@ -108,11 +108,11 @@ class Cache
 
     /**
      * @param string $key
-     * @param string $value
+     * @param mixed $value
      * @param integer $expiry
      * @return bool
      */
-    public static function put(string $key, string $value, int $expiry): bool
+    public static function put(string $key, mixed $value, int $expiry): bool
     {
         if (!self::$enabled) {
             return false;
