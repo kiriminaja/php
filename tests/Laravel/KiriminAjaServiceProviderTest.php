@@ -129,7 +129,7 @@ class KiriminAjaServiceProviderTest extends TestCase
         $storedKeys = [];
         $cacheMock = Mockery::mock(CacheRepository::class);
         $cacheMock->shouldReceive('put')
-            ->andReturnUsing(function ($key) use (&$storedKeys) {
+            ->andReturnUsing(function ($key, ...$args) use (&$storedKeys) {
                 $storedKeys[] = $key;
                 return true;
             });
