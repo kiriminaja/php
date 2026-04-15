@@ -101,13 +101,13 @@ $provinces = KiriminAja::getProvince();
 
 ### Config Reference (`services.kiriminaja`)
 
-| Key            | Env Variable              | Default       | Description                                          |
-| -------------- | ------------------------- | ------------- | ---------------------------------------------------- |
-| `mode`         | `KIRIMINAJA_MODE`         | `staging`     | `staging` or `production`                            |
-| `api_key`      | `KIRIMINAJA_API_KEY`      | `""`          | Your KiriminAja API key                              |
-| `base_url`     | `KIRIMINAJA_BASE_URL`     | `null`        | Custom base URL (overrides mode-based URL)           |
-| `cache_store`  | `KIRIMINAJA_CACHE_STORE`  | `laravel`     | `laravel` (uses Laravel Cache) or `file` (file-based)|
-| `cache_prefix` | `KIRIMINAJA_CACHE_PREFIX` | `kiriminaja:` | Cache key prefix (Laravel store only)                |
+| Key            | Env Variable              | Default       | Description                                           |
+| -------------- | ------------------------- | ------------- | ----------------------------------------------------- |
+| `mode`         | `KIRIMINAJA_MODE`         | `staging`     | `staging` or `production`                             |
+| `api_key`      | `KIRIMINAJA_API_KEY`      | `""`          | Your KiriminAja API key                               |
+| `base_url`     | `KIRIMINAJA_BASE_URL`     | `null`        | Custom base URL (overrides mode-based URL)            |
+| `cache_store`  | `KIRIMINAJA_CACHE_STORE`  | `laravel`     | `laravel` (uses Laravel Cache) or `file` (file-based) |
+| `cache_prefix` | `KIRIMINAJA_CACHE_PREFIX` | `kiriminaja:` | Cache key prefix (Laravel store only)                 |
 
 ---
 
