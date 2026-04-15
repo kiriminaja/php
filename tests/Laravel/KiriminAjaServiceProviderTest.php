@@ -1,9 +1,8 @@
 <?php
 
-namespace KiriminAja\Laravel;
-
 require_once __DIR__ . '/helpers.php';
 
+namespace KiriminAja\Laravel;
 use Illuminate\Config\Repository as ConfigRepository;
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Cache\Repository as CacheRepository;
