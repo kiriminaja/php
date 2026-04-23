@@ -20,6 +20,7 @@ use KiriminAja\Services\Address\SubDistrictService;
 use KiriminAja\Services\Courier\CourierDetailService;
 use KiriminAja\Services\Courier\CourierGroupService;
 use KiriminAja\Services\Courier\CourierListService;
+use KiriminAja\Services\Credit\GetBalanceService;
 use KiriminAja\Services\Preference\SetCallbackService;
 use KiriminAja\Services\Preference\SetWhitelistExpeditionService;
 use KiriminAja\Services\Shipping\CancelShippingService;
@@ -244,5 +245,15 @@ class KiriminAja implements KiriminAjaContract
     public static function getCourierDetail(string $courierCode): ServiceResponse
     {
         return self::call((new CourierDetailService($courierCode)));
+    }
+
+    /**
+     * Fetch the current KiriminAja credit balance.
+     *
+     * @return ServiceResponse
+     */
+    public static function getCreditBalance(): ServiceResponse
+    {
+        return self::call((new GetBalanceService()));
     }
 }

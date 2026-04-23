@@ -137,4 +137,9 @@ interface KiriminAjaContract {
      * @return ServiceResponse
      */
     public static function getCourierDetail(string $courierCode): ServiceResponse;
+
+    /**
+     * @return ServiceResponse
+     */
+    public static function getCreditBalance(): ServiceResponse;
 }

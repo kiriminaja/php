@@ -304,6 +304,16 @@ KiriminAja::setWhiteListExpedition(["jne_reg", "jne_yes"]);
 
 ---
 
+### Credit
+
+```php
+// Get the current KiriminAja credit balance
+$result = KiriminAja::getCreditBalance();
+// $result->data['balance'] => int
+```
+
+---
+
 ### Preference
 
 ```php
