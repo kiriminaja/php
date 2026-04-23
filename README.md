@@ -111,6 +111,67 @@ $provinces = KiriminAja::getProvince();
 
 ---
 
+## CodeIgniter 4 Integration
+
+CodeIgniter 4 doesn't auto-discover Composer packages, so you wire the SDK up once during boot.
+
+### 1. Publish the config
+
+Create `app/Config/KiriminAja.php`:
+
+```php
+<?php
+
+namespace Config;
+
+use CodeIgniter\Config\BaseConfig;
+use KiriminAja\Base\Config\Cache\Mode;
+
+class KiriminAja extends BaseConfig
+{
+    public string $mode = Mode::Staging;          // or Mode::Production
+    public string $apiKey = '';
+    public ?string $baseUrl = null;
+    public string $cacheStore = 'codeigniter';    // or 'file'
+    public string $cachePrefix = 'kiriminaja:';
+}
+```
+
+### 2. Bootstrap from `app/Config/Events.php`
+
+```php
+use CodeIgniter\Events\Events;
+use KiriminAja\CodeIgniter\KiriminAjaBootstrap;
+use Config\Services;
+
+Events::on('pre_system', static function () {
+    KiriminAjaBootstrap::boot(config('KiriminAja'), Services::cache());
+});
+```
+
+### 3. Use the SDK anywhere
+
+```php
+use KiriminAja\Services\KiriminAja;
+
+$provinces = KiriminAja::getProvince();
+```
+
+### Config Reference (`Config\KiriminAja`)
+
+| Property      | Default         | Description                                                       |
+| ------------- | --------------- | ----------------------------------------------------------------- |
+| `mode`        | `staging`       | `staging` or `production`                                         |
+| `apiKey`      | `""`            | Your KiriminAja API key                                           |
+| `baseUrl`     | `null`          | Custom base URL (overrides mode-based URL)                        |
+| `cacheStore`  | `codeigniter`   | `codeigniter` (uses CI4 cache service) or `file` (file-based)     |
+| `cachePrefix` | `kiriminaja:`   | Cache key prefix (codeigniter store only)                         |
+
+> The bootstrap helper also accepts a plain associative array — handy for tests
+> or non-conventional setups: `KiriminAjaBootstrap::boot(['mode' => 'staging', 'api_key' => '...'], $cache);`
+
+---
+
 ## Services
 
 ### Address

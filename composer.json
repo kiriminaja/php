@@ -54,7 +54,8 @@
     },
     "suggest": {
         "illuminate/contracts": "Required for Laravel cache store integration",
-        "illuminate/support": "Required for Laravel service provider integration"
+        "illuminate/support": "Required for Laravel service provider integration",
+        "codeigniter4/framework": "Required for the CodeIgniter 4 cache adapter and bootstrap helper"
     },
     "extra": {
         "laravel": {
