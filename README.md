@@ -180,6 +180,8 @@ KiriminAja::fullShippingPrice($data);
 ```php
 use KiriminAja\Models\RequestPickupData;
 use KiriminAja\Models\PackageData;
+use KiriminAja\Models\PackageItemData;
+use KiriminAja\Models\PackageItemMetadata;
 
 // Track by order ID
 KiriminAja::getTracking("ORDER123");
@@ -213,6 +215,21 @@ $package->service_type = "REG";
 $package->item_name = "Test item";
 $package->package_type_id = 1;
 $package->cod = 0;
+
+// `items` is optional. When provided, it lists the individual items
+// contained in the package. `item_value` is still required.
+$item = new PackageItemData();
+$item->name = "Kaos Polos";
+$item->price = 125000;
+$item->qty = 2;
+$item->weight = 260;
+$item->width = 4;
+$item->length = 4;
+$item->height = 4;
+$item->metadata = new PackageItemMetadata();
+$item->metadata->sku = "KP-001";
+$item->metadata->variant_label = "Merah / L";
+$package->items = [$item];
 
 $pickup->packages->add($package);
 KiriminAja::requestPickup($pickup);

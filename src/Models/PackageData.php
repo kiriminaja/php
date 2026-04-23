@@ -27,4 +27,27 @@ class PackageData extends ModelBase
     public string $item_name = '';                                   //	string(max:255)	false	Isi paket
     public ?bool $drop = false;                                      //	bool	true	DROP-OFF / CASHLESS
     public string $note = '';                                     //	string(max:50)	true	Special instructions
+
+    /**
+     * Optional list of items contained in this package. When provided each
+     * element must be an instance of PackageItemData. The `item_value`
+     * property is still required.
+     *
+     * @var PackageItemData[]|null
+     */
+    public ?array $items = null;
+
+    public function toArray(): array
+    {
+        $data = parent::toArray();
+        if (is_null($this->items)) {
+            unset($data['items']);
+            return $data;
+        }
+        $data['items'] = array_map(
+            static fn (PackageItemData $item) => $item->toArray(),
+            $this->items,
+        );
+        return $data;
+    }
 }

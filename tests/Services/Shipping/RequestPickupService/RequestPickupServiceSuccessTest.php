@@ -7,6 +7,8 @@ require_once(__DIR__.'/../ShippingMock.php');
 use KiriminAja\Base\Config\Cache\Mode;
 use KiriminAja\Base\Config\KiriminAjaConfig;
 use KiriminAja\Models\PackageData;
+use KiriminAja\Models\PackageItemData;
+use KiriminAja\Models\PackageItemMetadata;
 use KiriminAja\Models\RequestPickupData;
 use KiriminAja\Services\KiriminAja;
 use KiriminAja\Services\Shipping\RequestPickupService;
@@ -77,6 +79,20 @@ class RequestPickupServiceSuccessTest extends TestCase
         $package_data->cod = 0;
         $package_data->note = 'test pickup request non cod';
         $package_data->drop = true;
+
+        $item = new PackageItemData;
+        $item->name = 'Kaos Polos';
+        $item->price = 125000;
+        $item->qty = 2;
+        $item->weight = 260;
+        $item->width = 4;
+        $item->length = 4;
+        $item->height = 4;
+        $item->metadata = new PackageItemMetadata;
+        $item->metadata->sku = 'KP-001';
+        $item->metadata->variant_label = 'Merah / L';
+        $package_data->items = [$item];
+
         $pickup_object->packages->add($package_data);
 
         $result = (new RequestPickupService($pickup_object))->call();
