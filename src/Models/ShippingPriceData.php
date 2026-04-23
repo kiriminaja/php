@@ -5,25 +5,66 @@ namespace KiriminAja\Models;
 use KiriminAja\Base\ModelBase;
 
 class ShippingPriceData extends ModelBase {
-    // int	false	ID dari kecamatan_id pengirim
+    /**
+     * Sender's sub-district (kecamatan) ID.
+     *
+     * Required.
+     */
     public int $origin;
-    // int	false	ID dari kecamatan_id customer
+
+    /**
+     * Recipient's sub-district (kecamatan) ID.
+     *
+     * Required.
+     */
     public int $destination;
-    // int	false	Akumulasi berat paket dalam gram (berat paket aktual). Jika berat dimensi lebih besar dari berat aktual paket maka yang dikirimkan adalah berat dimensi
+
+    /**
+     * Total package weight in grams (actual weight). When the volumetric
+     * weight is greater than the actual weight, the volumetric weight is
+     * used instead.
+     *
+     * Required.
+     */
     public int $weight;
-    // int	true	Diisi jika paket membutuhkan asuransi (1 true, 0 false)
+
+    /**
+     * Whether the package needs insurance (1 = true, 0 = false).
+     *
+     * Optional.
+     */
     public ?int $insurance = null;
-    // int	true	Wajib diisi jika insurance diisi. Atau diisi untuk menghitung biaya COD dari paket (jika COD)
+
+    /**
+     * Required when `insurance` is set. May also be supplied to compute the
+     * COD fee for COD packages.
+     *
+     * Optional.
+     */
     public ?int $item_value = null;
-    // string or array	true	Untuk mengetahui list kurir silahkan hubungi kami
+
+    /**
+     * Single courier code or list of courier codes. Contact us for the full
+     * list of available couriers.
+     *
+     * Optional.
+     *
+     * @var string|string[]|null
+     */
     public $courier;
 
-    // Lebar paket dalam satuan cm. Nilai ini menunjukkan lebar paket.
+    /**
+     * Package width in centimetres.
+     */
     public int $width = 0;
 
-// Panjang paket dalam satuan cm. Nilai ini menunjukkan panjang paket.
+    /**
+     * Package length in centimetres.
+     */
     public int $length = 0;
 
-// Tinggi paket dalam satuan cm. Nilai ini menunjukkan tinggi paket.
+    /**
+     * Package height in centimetres.
+     */
     public int $height = 0;
 }
