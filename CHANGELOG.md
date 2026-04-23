@@ -1,6 +1,27 @@
 # Changelog
 
 
+## 2.1.1
+
+[compare changes](https://github.com/kiriminaja/php/compare/2.1.0...2.1.1)
+
+### 🚀 Enhancements
+
+- Add multi-item volumetric calculator ([6a755fd](https://github.com/kiriminaja/php/commit/6a755fd))
+- Add CodeIgniter 4 integration ([be8f007](https://github.com/kiriminaja/php/commit/be8f007))
+- Add credit balance API ([8776554](https://github.com/kiriminaja/php/commit/8776554))
+- Add optional items array to express request_pickup package ([f0bd1b6](https://github.com/kiriminaja/php/commit/f0bd1b6))
+
+### 📖 Documentation
+
+- Convert ShippingPriceData/ShippingFullPriceData comments to PHPDoc ([ca7a19f](https://github.com/kiriminaja/php/commit/ca7a19f))
+- Convert inline trailing comments to PHPDoc blocks ([bbbdf77](https://github.com/kiriminaja/php/commit/bbbdf77))
+
+### ❤️ Contributors
+
+- Yanuar Aditia ([@yanuaraditia](https://github.com/yanuaraditia))
+
+
 ## 2.1.0
 
 [compare changes](https://github.com/kiriminaja/php/compare/2.0.0...2.1.0)
@@ -35,6 +56,7 @@
 
 ### 🏡 Chore
 
+- V2.1.0 ([80c2c87](https://github.com/kiriminaja/php/commit/80c2c87))
 - Update changelog for v2.0.0 release ([965ecfe](https://github.com/kiriminaja/php/commit/965ecfe))
 
 ### Other Changes
