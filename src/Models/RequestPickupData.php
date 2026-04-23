@@ -6,16 +6,72 @@ use KiriminAja\Base\ModelBase;
 
 class RequestPickupData extends ModelBase
 {
-    public string $address;         // string(max:200)	false	Alamat lengkap
-    public string $phone;           // string(max:15)	false	Nomor telepon menggunakan format angka 0
-    public string $name;            // string(max:50)	false	Nama pengirim paket
-    public string $zipcode;         // string(max:5)	true	Kode pos pengirim
-    public int $kecamatan_id;    // integer	false	Kecamatan id pengirim
-    public array | RequestPickupDataList $packages;        // PackageData of array(min:1 object)	false	Lihat penyusunan list paket berikut
-    public string $schedule;        // string	false	Lihat bagian #Pickup Schedules
+    /**
+     * Sender's full address.
+     *
+     * Required. Max 200 characters.
+     */
+    public string $address;
+
+    /**
+     * Sender's phone number, formatted as digits starting with 0.
+     *
+     * Required. Max 15 characters.
+     */
+    public string $phone;
+
+    /**
+     * Sender's name.
+     *
+     * Required. Max 50 characters.
+     */
+    public string $name;
+
+    /**
+     * Sender's postal code.
+     *
+     * Optional. Max 5 characters.
+     */
+    public string $zipcode;
+
+    /**
+     * Sender's sub-district (kecamatan) ID.
+     *
+     * Required.
+     */
+    public int $kecamatan_id;
+
+    /**
+     * Packages to be picked up. See the official docs for how to build the
+     * package list.
+     *
+     * Required. Minimum 1 package.
+     *
+     * @var PackageData[]|RequestPickupDataList
+     */
+    public array | RequestPickupDataList $packages;
+
+    /**
+     * Pickup schedule. See the #Pickup Schedules section in the docs.
+     *
+     * Required.
+     */
+    public string $schedule;
+
+    /**
+     * Calling platform name (optional, e.g. the marketplace name).
+     */
     public ?string $platform_name = null;
-    public ?float $latitude;       // float   Latitude dari pengirim, diperlukan ketka menggunakan ekspedisi Lion Parcel.
-    public ?float $longitude;       // float   Latitude dari pengirim, diperlukan ketka menggunakan ekspedisi Lion Parcel.
+
+    /**
+     * Sender's latitude. Required when using the Lion Parcel courier.
+     */
+    public ?float $latitude;
+
+    /**
+     * Sender's longitude. Required when using the Lion Parcel courier.
+     */
+    public ?float $longitude;
 
     function __construct() {
         $this->packages = new RequestPickupDataList();

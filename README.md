@@ -159,13 +159,13 @@ $provinces = KiriminAja::getProvince();
 
 ### Config Reference (`Config\KiriminAja`)
 
-| Property      | Default         | Description                                                       |
-| ------------- | --------------- | ----------------------------------------------------------------- |
-| `mode`        | `staging`       | `staging` or `production`                                         |
-| `apiKey`      | `""`            | Your KiriminAja API key                                           |
-| `baseUrl`     | `null`          | Custom base URL (overrides mode-based URL)                        |
-| `cacheStore`  | `codeigniter`   | `codeigniter` (uses CI4 cache service) or `file` (file-based)     |
-| `cachePrefix` | `kiriminaja:`   | Cache key prefix (codeigniter store only)                         |
+| Property      | Default       | Description                                                   |
+| ------------- | ------------- | ------------------------------------------------------------- |
+| `mode`        | `staging`     | `staging` or `production`                                     |
+| `apiKey`      | `""`          | Your KiriminAja API key                                       |
+| `baseUrl`     | `null`        | Custom base URL (overrides mode-based URL)                    |
+| `cacheStore`  | `codeigniter` | `codeigniter` (uses CI4 cache service) or `file` (file-based) |
+| `cachePrefix` | `kiriminaja:` | Cache key prefix (codeigniter store only)                     |
 
 > The bootstrap helper also accepts a plain associative array — handy for tests
 > or non-conventional setups: `KiriminAjaBootstrap::boot(['mode' => 'staging', 'api_key' => '...'], $cache);`
