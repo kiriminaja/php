@@ -375,6 +375,24 @@ $result = KiriminAja::getCreditBalance();
 
 ---
 
+### Utilities — Volumetric
+
+Estimate the smallest bounding box (length / width / height) for a
+multi-item package by trying three stacking strategies and returning the
+arrangement with the smallest volume.
+
+```php
+use KiriminAja\Utils\Volumetric;
+
+$dim = Volumetric::calculate([
+    ['qty' => 2, 'length' => 10, 'width' => 10, 'height' => 2],
+    ['qty' => 1, 'length' => 5,  'width' => 5,  'height' => 5],
+]);
+// $dim['length'], $dim['width'], $dim['height']
+```
+
+---
+
 ### Preference
 
 ```php
