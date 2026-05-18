@@ -30,7 +30,7 @@ class ShippingRepository implements ShippingContract {
     }
 
     /**
-     * @return array
+     * @return array{status: bool, method: string, text: string, schedules: list<array{clock: string, until: string, expired: int, libur: bool}>}
      */
     public function schedules(): array {
         return self::api()->post('api/mitra/v2/schedules', null);
