@@ -375,6 +375,45 @@ $result = KiriminAja::getCreditBalance();
 
 ---
 
+### AWB (Print Waybill)
+
+```php
+// Print shipping label / waybill by AWB number(s)
+$result = KiriminAja::printAWB(['awb' => ['AWB123', 'AWB456']]);
+// $result->data['data']['url'] => PDF download URL
+```
+
+---
+
+### Calculations (COD)
+
+```php
+// Calculate COD (Cash on Delivery) fee
+$result = KiriminAja::calculateCOD([
+    'item_price' => 100000,
+    'data' => [
+        [
+            'courier_code' => 'jne',
+            'courier_service_code' => 'reg',
+            'shipping_cost' => 10000,
+        ],
+    ],
+]);
+// $result->data => array of fee breakdown per courier/service
+```
+
+---
+
+### Profile
+
+```php
+// Get member profile and metadata
+$result = KiriminAja::getProfile();
+// $result->data['id'], $result->data['email'], $result->data['name'], etc.
+```
+
+---
+
 ### Utilities — Volumetric
 
 Estimate the smallest bounding box (length / width / height) for a

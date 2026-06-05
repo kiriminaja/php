@@ -142,4 +142,21 @@ interface KiriminAjaContract {
      * @return ServiceResponse
      */
     public static function getCreditBalance(): ServiceResponse;
+
+    /**
+     * @param array $data
+     * @return ServiceResponse
+     */
+    public static function printAWB(array $data): ServiceResponse;
+
+    /**
+     * @param array $data
+     * @return ServiceResponse
+     */
+    public static function calculateCOD(array $data): ServiceResponse;
+
+    /**
+     * @return ServiceResponse
+     */
+    public static function getProfile(): ServiceResponse;
 }

@@ -17,12 +17,15 @@ use KiriminAja\Services\Address\DistrictByNameService;
 use KiriminAja\Services\Address\DistrictService;
 use KiriminAja\Services\Address\ProvinceService;
 use KiriminAja\Services\Address\SubDistrictService;
+use KiriminAja\Services\AWB\PrintAWBService;
+use KiriminAja\Services\Calculations\CodCalculationService;
 use KiriminAja\Services\Courier\CourierDetailService;
 use KiriminAja\Services\Courier\CourierGroupService;
 use KiriminAja\Services\Courier\CourierListService;
 use KiriminAja\Services\Credit\GetBalanceService;
 use KiriminAja\Services\Preference\SetCallbackService;
 use KiriminAja\Services\Preference\SetWhitelistExpeditionService;
+use KiriminAja\Services\Profile\ProfileService;
 use KiriminAja\Services\Shipping\CancelShippingService;
 use KiriminAja\Services\Shipping\FullShippingPrice;
 use KiriminAja\Services\Shipping\GetPaymentService;
@@ -220,6 +223,32 @@ class KiriminAja implements KiriminAjaContract
     public static function findNewDriver(string $orderID): ServiceResponse
     {
         return self::call((new FindNewDriverService($orderID)));
+    }
+
+    /**
+     * @param array $data
+     * @return ServiceResponse
+     */
+    public static function printAWB(array $data): ServiceResponse
+    {
+        return self::call((new PrintAWBService($data)));
+    }
+
+    /**
+     * @param array $data
+     * @return ServiceResponse
+     */
+    public static function calculateCOD(array $data): ServiceResponse
+    {
+        return self::call((new CodCalculationService($data)));
+    }
+
+    /**
+     * @return ServiceResponse
+     */
+    public static function getProfile(): ServiceResponse
+    {
+        return self::call((new ProfileService()));
     }
 
     /**
