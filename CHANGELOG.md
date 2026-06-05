@@ -1,6 +1,24 @@
 # Changelog
 
 
+## 2.1.2
+
+[compare changes](https://github.com/kiriminaja/php/compare/2.1.1...2.1.2)
+
+### 🚀 Enhancements
+
+- Add AWB print, COD calculation, and profile services ([f267292](https://github.com/kiriminaja/php/commit/f267292))
+
+### 📖 Documentation
+
+- Return jsdoc ([b2c59e0](https://github.com/kiriminaja/php/commit/b2c59e0))
+
+### ❤️ Contributors
+
+- Yanuar
+- yan-ad ([@yanuaraditia](https://github.com/yanuaraditia))
+
+
 ## 2.1.1
 
 [compare changes](https://github.com/kiriminaja/php/compare/2.1.0...2.1.1)
@@ -16,6 +34,10 @@
 
 - Convert ShippingPriceData/ShippingFullPriceData comments to PHPDoc ([ca7a19f](https://github.com/kiriminaja/php/commit/ca7a19f))
 - Convert inline trailing comments to PHPDoc blocks ([bbbdf77](https://github.com/kiriminaja/php/commit/bbbdf77))
+
+### 🏡 Chore
+
+- V2.1.1 ([bb0769b](https://github.com/kiriminaja/php/commit/bb0769b))
 
 ### ❤️ Contributors
 
