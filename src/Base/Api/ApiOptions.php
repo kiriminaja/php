@@ -3,16 +3,15 @@
 namespace KiriminAja\Base\Api;
 
 use Exception;
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
+use Http\Client\Curl\Client;
 use KiriminAja\Base\Config\Cache\Mode;
 use KiriminAja\Base\Config\KiriminAjaConfig;
+use Nyholm\Psr7\Factory\Psr17Factory;
+use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestInterface;
 
 trait ApiOptions
 {
-
-    private string $method;
-
     /**
      * Getter base url
      *
@@ -48,26 +47,6 @@ trait ApiOptions
     }
 
     /**
-     * Data option
-     *
-     * @param $data
-     * @return array
-     */
-    protected function dataOption($data): array
-    {
-        return match (strtoupper($this->method)) {
-            "GET" => [
-                "headers" => self::getHeaders(),
-                "query" => $data
-            ],
-            default => [
-                "headers" => self::getHeaders(),
-                "json" => $data
-            ],
-        };
-    }
-
-    /**
      * URL to consume client
      *
      * @param $endpoint
@@ -82,11 +61,52 @@ trait ApiOptions
     /**
      * Getter client
      *
-     * @return Client
+     * @return ClientInterface
      */
-    protected static function client(): Client
+    protected function client(): ClientInterface
     {
-        return new Client;
+        if ($this->httpClient === null) {
+            $factory = new Psr17Factory();
+            $this->httpClient = new Client($factory, $factory);
+        }
+
+        return $this->httpClient;
+    }
+
+    protected function createRequest(string $method, string $endpoint, mixed $data, bool $queryOnly = false): RequestInterface
+    {
+        $method = strtoupper($method);
+        $url = $this->url($endpoint);
+
+        if (($method === 'GET' || $queryOnly) && !empty($data)) {
+            $separator = str_contains($url, '?') ? '&' : '?';
+            $url .= $separator . http_build_query($data, '', '&', PHP_QUERY_RFC3986);
+        }
+
+        $factory = new Psr17Factory();
+        $request = $factory->createRequest($method, $url);
+
+        foreach (self::getHeaders() as $name => $value) {
+            $request = $request->withHeader($name, $value);
+        }
+
+        if ($method !== 'GET' && !$queryOnly && $data !== null) {
+            $body = json_encode($data, JSON_THROW_ON_ERROR);
+            $request = $request->withBody($factory->createStream($body));
+        }
+
+        return $request;
+    }
+
+    protected function send(RequestInterface $request): array
+    {
+        $response = $this->client()->sendRequest($request);
+
+        if ($response->getStatusCode() >= 400) {
+            return [false, "HTTP request failed with status code {$response->getStatusCode()}"];
+        }
+
+        return [true, json_decode((string) $response->getBody(), true)];
     }
 
     /**
@@ -99,11 +119,9 @@ trait ApiOptions
      */
     protected function request($method, $endpoint, $data): array
     {
-        $this->method = $method;
         try {
-            $request = self::client()->request($this->method, $this->url($endpoint), $this->dataOption($data));
-            return [true, json_decode($request->getBody()->getContents(), true)];
-        } catch (\Throwable|GuzzleException $e) {
+            return $this->send($this->createRequest($method, $endpoint, $data));
+        } catch (\Throwable $e) {
             return [false, $e->getMessage()];
         }
     }
@@ -118,17 +136,9 @@ trait ApiOptions
      */
     protected function requestWithQuery(string $method, string $endpoint, ?array $query = null): array
     {
-        $this->method = $method;
         try {
-            $options = [
-                'headers' => self::getHeaders(),
-            ];
-            if ($query) {
-                $options['query'] = $query;
-            }
-            $request = self::client()->request($this->method, $this->url($endpoint), $options);
-            return [true, json_decode($request->getBody()->getContents(), true)];
-        } catch (\Throwable|GuzzleException $e) {
+            return $this->send($this->createRequest($method, $endpoint, $query, true));
+        } catch (\Throwable $e) {
             return [false, $e->getMessage()];
         }
     }
