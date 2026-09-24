@@ -2,8 +2,6 @@
 
 namespace KiriminAja\Contracts;
 
-use GuzzleHttp\Client;
-
 interface ServiceClientContract {
     /**
      * @param string $endPoint

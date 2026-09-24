@@ -2,12 +2,16 @@
 
 namespace KiriminAja\Base\Api;
 
-use GuzzleHttp\Client;
 use KiriminAja\Contracts\ServiceClientContract;
+use Psr\Http\Client\ClientInterface;
 
 class Api implements ServiceClientContract {
 
     use ApiOptions;
+
+    public function __construct(private ?ClientInterface $httpClient = null)
+    {
+    }
 
     /**
      * @param string $endPoint
