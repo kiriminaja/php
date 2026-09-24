@@ -2,10 +2,13 @@
 
 namespace KiriminAja\Utils;
 
-use BlakvGhost\PHPValidator\Validator as PHPValidator;
-
 class Validator
 {
+    private const MESSAGES = [
+        'required' => 'The :attribute field is required.',
+        'numeric' => 'The :attribute field must be numeric.',
+    ];
+
     /**
      * @param array $inputs
      * @param array $rules
@@ -14,10 +17,32 @@ class Validator
      */
     public static function validate(array $inputs, array $rules, array $messages = []): ValidationResult
     {
-        $validator = new PHPValidator($inputs, $rules, $messages);
-        return new ValidationResult(
-            $validator->isValid(),
-            $validator->isValid() ? [] : $validator->getErrors()
-        );
+        $errors = [];
+
+        foreach ($rules as $field => $fieldRules) {
+            $value = $inputs[$field] ?? null;
+            $fieldRules = is_array($fieldRules) ? $fieldRules : explode('|', $fieldRules);
+
+            foreach ($fieldRules as $rule) {
+                [$ruleName] = explode(':', $rule, 2);
+
+                if ($ruleName !== 'required' && $value === null) {
+                    continue;
+                }
+
+                $passes = match ($ruleName) {
+                    'required' => !empty($value),
+                    'numeric' => is_numeric($value),
+                    default => throw new \InvalidArgumentException("Unsupported validation rule: {$ruleName}"),
+                };
+
+                if (!$passes) {
+                    $errors[$field][] = $messages[$field][$ruleName]
+                        ?? str_replace(':attribute', $field, self::MESSAGES[$ruleName]);
+                }
+            }
+        }
+
+        return new ValidationResult(empty($errors), $errors);
     }
 }
