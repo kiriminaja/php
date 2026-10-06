@@ -468,7 +468,27 @@ For any requests, bugs, or comments, please open an [issue](https://github.com/k
 ## Development
 
 ```bash
-composer install           # install dependencies
-vendor/bin/phpunit tests   # run tests
+composer install                                 # install committed dependencies (PHP 8.5)
+vendor/bin/paratest --configuration=phpunit.xml    # run tests in parallel
 # or `make test`
 ```
+
+ParaTest is the test runner. It uses PHPUnit internally, so PHPUnit remains a
+transitive development dependency and the tests continue to use PHPUnit assertions
+and `phpunit.xml`. The ParaTest constraint allows Composer to resolve dependencies
+for PHP 8.1 and newer without upgrading beyond PHPUnit 11.
+
+`composer.lock` is committed for reproducible development installs. CI installs
+and tests that exact lockfile on PHP 8.5 and checks that it remains unchanged.
+Separate PHP 8.1–8.4 compatibility jobs use `composer update` to resolve packages
+for each PHP version instead of attempting to install the newer locked packages.
+
+When developing on an older PHP version, run `composer update` to resolve
+compatible development dependencies locally. Do not commit those compatibility-only
+lockfile changes; intentional dependency updates should regenerate the canonical
+lockfile on PHP 8.5.
+
+Use `--processes=2` to limit the number of parallel workers, or `--processes=1`
+when debugging. File-cache tests use process-specific temporary directories to
+avoid interference between workers. Process isolation is enabled in `phpunit.xml`
+because the existing Mockery class-overload mocks must not leak between tests.

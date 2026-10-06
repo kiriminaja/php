@@ -4,7 +4,7 @@
 #   make release-minor    — bump minor (1.3.3 → 1.4.0)
 #   make release-major    — bump major (1.3.3 → 2.0.0)
 #   make changelog        — regenerate CHANGELOG.md without releasing
-#   make test             — run tests
+#   make test             — run tests in parallel with ParaTest
 
 SHELL := /bin/bash
 .PHONY: test changelog release release-minor release-major _release
@@ -29,7 +29,7 @@ _bump_major = $(shell echo $(CURRENT_VERSION) | awk -F. '{printf "%s.0.0", $$1+1
 # ---------------------------------------------------------------------------
 
 test:
-	vendor/bin/phpunit tests
+	vendor/bin/paratest --configuration=phpunit.xml
 
 changelog:
 	@echo "📝 Generating CHANGELOG.md …"

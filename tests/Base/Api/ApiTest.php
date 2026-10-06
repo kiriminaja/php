@@ -14,7 +14,7 @@ class ApiTest extends TestCase
 {
     protected function setUp(): void
     {
-        KiriminAjaConfig::setCacheDirectory(sys_get_temp_dir() . '/kiriminaja-phpunit-api-cache');
+        KiriminAjaConfig::setCacheDirectory(sys_get_temp_dir() . '/kiriminaja-paratest-api-cache-' . getmypid());
         KiriminAjaConfig::setBaseUrl('https://api.example.test');
         KiriminAjaConfig::setApiTokenKey('test-token');
     }

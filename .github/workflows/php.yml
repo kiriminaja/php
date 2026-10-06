@@ -14,8 +14,18 @@ jobs:
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                php: ["8.1", "8.2", "8.3", "8.4"]
-        name: Compatibility test with PHP version ${{ matrix.php }}
+                include:
+                    - php: "8.1"
+                      dependencies: update
+                    - php: "8.2"
+                      dependencies: update
+                    - php: "8.3"
+                      dependencies: update
+                    - php: "8.4"
+                      dependencies: update
+                    - php: "8.5"
+                      dependencies: install
+        name: PHP ${{ matrix.php }} (composer ${{ matrix.dependencies }})
         steps:
             - uses: actions/checkout@v4
 
@@ -33,12 +43,21 @@ jobs:
               uses: actions/cache@v4
               with:
                   path: vendor
-                  key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+                  key: ${{ runner.os }}-php-${{ matrix.php }}-${{ matrix.dependencies }}-${{ hashFiles('composer.json', 'composer.lock') }}
                   restore-keys: |
-                      ${{ runner.os }}-php-
+                      ${{ runner.os }}-php-${{ matrix.php }}-${{ matrix.dependencies }}-
 
-            - name: Install dependencies
-              run: composer install --prefer-dist --no-progress
+            - name: Install committed dependencies
+              if: matrix.dependencies == 'install'
+              run: composer install --prefer-dist --no-progress --no-interaction
 
-            - name: Run PHPUnit tests
-              run: vendor/bin/phpunit tests
+            - name: Resolve dependencies for PHP ${{ matrix.php }}
+              if: matrix.dependencies == 'update'
+              run: composer update --prefer-dist --no-progress --no-interaction
+
+            - name: Verify committed lockfile is unchanged
+              if: matrix.dependencies == 'install'
+              run: git diff --exit-code -- composer.lock
+
+            - name: Run ParaTest tests
+              run: vendor/bin/paratest --configuration=phpunit.xml --processes=2

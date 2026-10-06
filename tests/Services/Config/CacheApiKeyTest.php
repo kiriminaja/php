@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 class CacheApiKeyTest extends TestCase {
 
     public function testCacheApiKey() {
-        KiriminAjaConfig::setCacheDirectory(sys_get_temp_dir() . '/kiriminaja-phpunit-cache');
+        KiriminAjaConfig::setCacheDirectory(sys_get_temp_dir() . '/kiriminaja-paratest-cache-' . getmypid());
         $cache = new _CacheApiKey;
         $cache->setKey("2323");
 //        echo "\nAPI-Key : ".$cache->getKey();

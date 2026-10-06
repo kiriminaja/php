@@ -10,7 +10,7 @@ class BaseUrlTest extends TestCase
 {
     protected function setUp(): void
     {
-        KiriminAjaConfig::setCacheDirectory(sys_get_temp_dir() . '/kiriminaja-phpunit-cache');
+        KiriminAjaConfig::setCacheDirectory(sys_get_temp_dir() . '/kiriminaja-paratest-cache-' . getmypid());
         // Clear any previously set custom base URL
         KiriminAjaConfig::baseUrl()->clearBaseUrl();
     }

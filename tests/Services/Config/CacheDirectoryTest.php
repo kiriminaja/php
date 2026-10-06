@@ -10,7 +10,7 @@ class CacheDirectoryTest extends TestCase
 {
     public function testCacheDirectoryCanBeChanged(): void
     {
-        $customDir = sys_get_temp_dir() . '/kiriminaja-phpunit-custom-cache';
+        $customDir = sys_get_temp_dir() . '/kiriminaja-paratest-custom-cache-' . getmypid();
         KiriminAjaConfig::setCacheDirectory($customDir);
 
         $resolved = Cache::getCacheDirectory();
