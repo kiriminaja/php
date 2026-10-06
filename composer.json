@@ -10,9 +10,6 @@
         "shipment aggregator",
         "fulfillment"
     ],
-    "allow-plugins": {
-        "php-http/discovery": true
-    },
     "authors": [
         {
             "name": "Daewu Bintara",
