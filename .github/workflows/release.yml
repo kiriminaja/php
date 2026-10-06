@@ -1,0 +1,99 @@
+name: Release
+
+on:
+    push:
+        tags:
+            - '[0-9]*.[0-9]*.[0-9]*'
+    workflow_dispatch:
+        inputs:
+            tag:
+                description: Existing version tag to publish (for example, 2.1.7)
+                required: true
+                type: string
+
+permissions:
+    contents: read
+
+concurrency:
+    group: release-${{ github.event.inputs.tag || github.ref_name }}
+    cancel-in-progress: false
+
+jobs:
+    verify:
+        name: Verify release tag and run tests
+        runs-on: ubuntu-latest
+        outputs:
+            tag: ${{ steps.version.outputs.tag }}
+        steps:
+            - name: Validate release tag
+              id: version
+              env:
+                  INPUT_TAG: ${{ inputs.tag }}
+                  REF_NAME: ${{ github.ref_name }}
+              run: |
+                  set -euo pipefail
+                  tag="${INPUT_TAG:-$REF_NAME}"
+                  if [[ ! "$tag" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+                      echo "Expected a version tag such as 2.1.7, got: $tag" >&2
+                      exit 1
+                  fi
+                  echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+            - uses: actions/checkout@v7
+              with:
+                  ref: refs/tags/${{ steps.version.outputs.tag }}
+                  persist-credentials: false
+
+            - name: Set up PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: '8.5'
+                  tools: composer:v2
+                  coverage: none
+
+            - name: Verify tag matches package version
+              env:
+                  RELEASE_TAG: ${{ steps.version.outputs.tag }}
+              run: |
+                  php -r '
+                      $package = json_decode(file_get_contents("composer.json"), true, 512, JSON_THROW_ON_ERROR);
+                      if (($package["version"] ?? null) !== getenv("RELEASE_TAG")) {
+                          fwrite(STDERR, "Release tag must match composer.json version\n");
+                          exit(1);
+                      }
+                  '
+
+            - name: Validate Composer metadata
+              run: composer validate
+
+            - name: Install committed dependencies
+              run: composer install --prefer-dist --no-progress --no-interaction
+
+            - name: Run ParaTest
+              run: vendor/bin/paratest --configuration=phpunit.xml --processes=2
+
+            - name: Verify release files are unchanged
+              run: git diff --exit-code -- composer.json composer.lock CHANGELOG.md
+
+    publish:
+        name: Publish GitHub Release
+        needs: verify
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+        steps:
+            - name: Create release with generated notes
+              env:
+                  GH_TOKEN: ${{ github.token }}
+                  GH_REPO: ${{ github.repository }}
+                  RELEASE_TAG: ${{ needs.verify.outputs.tag }}
+              run: |
+                  set -euo pipefail
+                  if gh release view "$RELEASE_TAG" > /dev/null 2>&1; then
+                      echo "Release $RELEASE_TAG already exists; leaving it unchanged."
+                      exit 0
+                  fi
+                  gh release create "$RELEASE_TAG" \
+                      --verify-tag \
+                      --title "v$RELEASE_TAG" \
+                      --generate-notes

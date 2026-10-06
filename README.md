@@ -492,3 +492,33 @@ Use `--processes=2` to limit the number of parallel workers, or `--processes=1`
 when debugging. File-cache tests use process-specific temporary directories to
 avoid interference between workers. Process isolation is enabled in `phpunit.xml`
 because the existing Mockery class-overload mocks must not leak between tests.
+
+### Releasing
+
+From a clean working tree with the committed dependencies installed on PHP 8.5:
+
+```bash
+make release          # next patch version
+make release-minor    # next minor version
+make release-major    # next major version
+```
+
+Each command validates Composer metadata, runs ParaTest, bumps the version,
+refreshes `composer.lock` without upgrading locked dependencies, and regenerates
+`CHANGELOG.md`. It then creates a release commit and an annotated version tag
+(for example, `2.1.7`) and pushes both atomically to `origin` on the current branch.
+Use `REMOTE=other-remote` to override the destination. Releases stop on errors,
+uncommitted changes, detached HEAD, or an existing release tag.
+
+The push requires permission to update the branch and create tags. If it fails,
+the release commit and tag remain local; resolve the cause and push those existing
+refs rather than running another version bump.
+
+Pushing a version tag triggers `.github/workflows/release.yml`. It verifies the
+tag matches `composer.json`, installs the committed lockfile on PHP 8.5, and runs
+ParaTest before publishing a GitHub Release with automatically generated release
+notes. Existing releases are left unchanged on reruns.
+
+To publish or retry an existing tag manually, select **Release → Run workflow**
+in GitHub Actions and enter the tag (for example, `2.1.7`). The workflow only
+publishes existing tags; it does not bump versions or create commits or tags.
