@@ -1,7 +1,7 @@
 {
     "name": "kiriminaja/kiriminaja-php",
     "description": "PHP clients for KiriminAja API",
-    "version": "2.1.5",
+    "version": "2.1.6",
     "license": "MIT",
     "keywords": [
         "kiriminaja",
@@ -10,6 +10,9 @@
         "shipment aggregator",
         "fulfillment"
     ],
+    "allow-plugins": {
+        "php-http/discovery": true
+    },
     "authors": [
         {
             "name": "Daewu Bintara",
@@ -62,6 +65,11 @@
             "providers": [
                 "KiriminAja\\Laravel\\KiriminAjaServiceProvider"
             ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
         }
     }
 }
